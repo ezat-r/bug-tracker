@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def bugsView(request):
+
+    return render(request, "bug-tracker/bugs-view.html")
