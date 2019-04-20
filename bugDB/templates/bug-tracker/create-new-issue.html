@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block pageTitle %}Create New Issue{% endblock%}
+{% block content %}
+<div class="row">
+    <h3 class="center-align">Open New Issue</h3>
+</div>
+<div class="row">
+    <!-- Begin Form -->
+    <form action="" method="POST" class="col s12">
+        <!-- Begin Project Select Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">poll</i>
+                <select id="project_name" name="project_name">
+                    <option selected>Project A</option>
+                    <option>Project B</option>
+                    <option>Project C</option>
+                </select>
+                <label>Project</label>
+            </div>
+        </div>
+        <!-- End Project Select Element -->
+        <!-- Begin Issue Type Select Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i id="issue_type_icon" class="fa fa-minus-square red-icon prefix"></i>
+                <select id="issue_type" name="issue_type">
+                    <option value="bug" selected>Bug</option>
+                    <option value="feature_request">Feature Request</option>
+                </select>
+                <label>Issue Type</label>
+            </div>
+        </div>
+        <!-- End Issue Type Select Element -->
+        <!-- Begin Issue Priority Select Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i id="issue_priority_icon" class="fa fa-minus-circle red-icon prefix"></i>
+                <select id="issue_priority" name="issue_priority">
+                    <option value="triage_required" selected>Triage Required</option>
+                    <option value="severe">Severe</option>
+                    <option value="must_fix">Must Fix</option>
+                    <option value="desirable">Desirable To Fix</option>
+                    <option value="unlikely">Unlikely To Fix</option>
+                </select>
+                <label>Priority</label>
+            </div>
+        </div>
+        <!-- End Issue Priority Select Element -->
+        <!-- Begin Issue Title Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">title</i>
+                <input id="issue_title" type="text" name="issue_title" class="validate" required>
+                <label for="issue_title">Title</label>
+            </div>
+        </div>
+        <!-- End Issue Title Element -->
+        <!-- Begin Affects Version Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa fa-sort-numeric-asc prefix"></i>
+                <input id="issue_affects_version" type="text" name="issue_affects_version" class="validate" required>
+                <label for="issue_affects_version">Affects Version</label>
+            </div>
+        </div>
+        <!-- End Affects Version Element -->
+        <!-- Begin Found In Build Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa fa-slack prefix"></i>
+                <input id="issue_build" type="text" name="issue_build" class="validate" required>
+                <label for="issue_build">Found In Build#</label>
+            </div>
+        </div>
+        <!-- End Found In Build Element -->
+        <!-- Begin Issue Description Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">format_list_numbered</i>
+                <textarea name="issue_description" id="issue_description" class="materialize-textarea" required></textarea>
+                <label for="issue_description">Description</label>
+            </div>
+            <p id="form-helper1" class="helper-message element-hide">Press 'Enter' to add a new line!</p>
+        </div>
+        <!-- End Issue Description Element -->
+        <!-- Begin Create Issue Button -->
+        <div class="center-align">
+            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit">Create
+                <i class="material-icons right">playlist_add</i>
+            </button>
+        </div>
+        <!-- End Create Issue Button -->
+    </form>
+    <!-- End Form -->
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock%}

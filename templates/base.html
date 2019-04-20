@@ -1,11 +1,11 @@
-{% load static from staticfiles%}
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>All Bugs</title>
+    <title>{% block pageTitle %}{% endblock%}</title>
     <!-- Load Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Load Materialize Icons -->
@@ -75,8 +75,8 @@
         });
     </script>
     <!-- Begin Page Specific JS -->
-    <!-- {% block js %}
-    {% endblock%} -->
+    {% block js %}
+    {% endblock%}
     <!-- End Page Specific JS -->
 </body>
 </html>

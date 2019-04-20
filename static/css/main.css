@@ -10,23 +10,18 @@
     margin-top: 30px;
 }
 
-/* Collapsibles - Home page, Filter page and Categories page */
-.collapsible{
-    margin-top: 40px;
-    margin-bottom: 25px;
+/* Issue Type Icons */
+
+.red-icon{
+    color: red;
+    font-size: 18px;
 }
 
-.btn-small{
-    height: 24px;
-    width: 60px;
-    line-height: 24px;
-    margin: 5px 5px;
-    padding: 0 0.5em;
+.green-icon{
+    color: green;
+    font-size: 18px;
 }
 
-.recipe-title-header, .category-title-header{
-    margin-top: 5px;
-}
 
 /* Pagination hide */
 .pag-hide{
