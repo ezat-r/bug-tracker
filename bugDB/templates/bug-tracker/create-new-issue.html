@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load static from staticfiles %}
-{% block pageTitle %}Create New Issue{% endblock%}
+{% block pageTitle %}Create New Issue{% endblock %}
 {% block content %}
 <div class="row">
     <h3 class="center-align">Open New Issue</h3>
@@ -11,7 +10,7 @@
         <!-- Begin Project Select Element -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">poll</i>
+                <i class="material-icons prefix">apps</i>
                 <select id="project_name" name="project_name">
                     <option selected>Project A</option>
                     <option>Project B</option>
@@ -96,6 +95,3 @@
     <!-- End Form -->
 </div>
 {% endblock %}
-{% block js %}
-<script src="{% static 'js/main.js' %}"></script>
-{% endblock%}

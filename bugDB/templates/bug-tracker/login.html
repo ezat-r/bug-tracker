@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block pageTitle %}Bug Tracker - Sign In{% endblock%}
+{% block content %}
+<div class="row">
+    <h3 class="center-align">Open New Issue</h3>
+</div>
+<div class="row" id="form-container">
+    <!-- Begin Form -->
+    <form method="POST" class="col s12" id="login-form">
+        {% csrf_token %}
+        <!-- Begin Username Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">person</i>
+                {{loginForm.username}}
+                <label for="username">Username</label>
+            </div>
+        </div>
+        <!-- End Username Element -->
+        <!-- Begin Password Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa fa-key prefix"></i>
+                {{loginForm.password}}
+                <label for="password">Password</label>
+            </div>
+        </div>
+        <!-- End Password Element -->
+        <!-- Begin Login Button -->
+        <div class="center-align">
+            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit">Sign In
+            </button>
+        </div>
+        <!-- End Login Button -->
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            <p id="error-message" class="msg msg-error z-depth-3 scale-transition">{{message}}</p>         
+            {% endfor %}
+        </div>
+        {% endif %}
+    </form>
+    <!-- End Form -->
+</div>
+{% endblock %}

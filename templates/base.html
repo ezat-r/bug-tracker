@@ -23,16 +23,24 @@
                 <a href="" class="brand-logo">Bug Tracker</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Sign In</a></li>
-                    <!-- <li><a href="">Manage Categories</a></li> -->
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'create_issue' %}">Create New</a></li>
+                    <li><a href="{% url 'all_issues' %}">Home</a></li>
+                    <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login'%}">Sign In</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="">Home</a></li>
-            <li><a href="">Log In</a></li>
-            <!-- <li><a href="">Manage Categories</a></li> -->
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'create_issue' %}">Create New</a></li>
+            <li><a href="{% url 'all_issues' %}">Home</a></li>
+            <li><a href="{% url 'logout' %}">Sign Out</a></li>
+            {% else %}
+            <li><a href="{% url 'login'%}">Sign In</a></li>
+            {% endif %}
         </ul>
     </header>
     <!-- End Navigation -->
@@ -74,9 +82,7 @@
             $('.sidenav').sidenav();
         });
     </script>
-    <!-- Begin Page Specific JS -->
-    {% block js %}
-    {% endblock%}
-    <!-- End Page Specific JS -->
+    <!-- Load Our JS -->
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

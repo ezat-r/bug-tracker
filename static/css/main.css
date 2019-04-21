@@ -1,14 +1,3 @@
-/* Home Page  */
-
-#no-recipe-message{
-    margin-top: 25px;
-    margin-bottom: 30px;
-    padding: 5px;
-}
-
-#filter-form{
-    margin-top: 30px;
-}
 
 /* Issue Type Icons */
 
@@ -22,13 +11,7 @@
     font-size: 18px;
 }
 
-
-/* Pagination hide */
-.pag-hide{
-    display: none;
-}
-
-/* Add & Edit Recipe Page */
+/* Add New Issue Page & Edit Issue Page */
 
 .helper-message{
     color: red;
@@ -38,6 +21,28 @@
 
 .element-hide{
     display: none;
+}
+
+/* Error message display */
+
+.msg {
+    width:100%;
+    border: 1px solid;
+    padding:10px;
+    margin: 20px;
+    color: grey;
+}
+
+.msg-error {
+    border-color: #d32f2f;
+    background-color: #ef5350;
+    color: white;
+}
+
+.msg-success {
+    border-color: #31df31;
+    background-color: #66cf85;
+    color: white;
 }
 
 /* Footer */

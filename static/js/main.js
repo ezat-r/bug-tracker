@@ -47,5 +47,21 @@ $(function(){
                 $("#issue_priority_icon").addClass("fa fa-angle-double-down green-icon prefix");
             }
         });
+    }else if(document.title == "Bug Tracker - Sign In"){
+        $("#id_username").addClass("validate");
+        $("#id_password").addClass("validate");
+
+        // if form error or success message is shown, then hide it after 2 seconds
+        if($("#error-message").html()){
+            setTimeout(function(){
+                $("#error-message").fadeOut();
+            }, 2000);
+        } else if($("#success-message").html()){
+            setTimeout(function(){
+                $("#success-message").fadeOut();
+            }, 2000);
+        }
+
+        
     }
 });
