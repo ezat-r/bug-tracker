@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "bugDB"
+    "materialize_forms",
+    "django_forms_bootstrap",
+    "bugDB",
 ]
 
 MIDDLEWARE = [
@@ -100,6 +102,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Email Auth
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend"
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -122,3 +129,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# Emails
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+

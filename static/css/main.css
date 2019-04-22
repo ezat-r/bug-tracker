@@ -23,7 +23,7 @@
     display: none;
 }
 
-/* Error message display */
+/* Forms message display stylings */
 
 .msg {
     width:100%;
@@ -33,7 +33,7 @@
     color: grey;
 }
 
-.msg-error {
+.msg-error, .error-msg {
     border-color: #d32f2f;
     background-color: #ef5350;
     color: white;
@@ -43,6 +43,10 @@
     border-color: #31df31;
     background-color: #66cf85;
     color: white;
+}
+
+.help-block{
+    font-style: italic;
 }
 
 /* Footer */
@@ -112,5 +116,9 @@ footer{
 
     h5{
         font-size: 22px;
+    }
+
+    .msg{
+        margin-left: 0;
     }
 }

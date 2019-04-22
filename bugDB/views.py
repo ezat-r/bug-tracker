@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .forms import UserLoginForm
+from .forms import UserLoginForm, UserRegistrationForm
 
 def login(request):
 
@@ -52,6 +52,43 @@ def logout(request):
     messages.success(request, "You have successfully logged out!")
 
     return redirect(reverse("login"))
+
+def registration(request):
+    clearMessages(request)
+
+    if request.user.is_authenticated:
+        # user is logged in already, redirect to index view
+        return redirect(reverse("all_issues"))
+
+    if request.method == "POST":
+        # instantiate a form using POST data
+        registerationForm = UserRegistrationForm(request.POST)
+
+        # check if form is valid
+        if registerationForm.is_valid():
+            # it's valid, so save it
+            registerationForm.save()
+
+            
+            user = auth.authenticate(username=request.POST["username"], password=request.POST["password1"])
+
+            # check if user is created fine
+            if user:
+                # created fine, so display a success message
+                auth.login(user=user, request=request)
+                messages.success(request, "You have successfully registered!")
+
+                # re-direct to 'all_issues' page
+                return redirect(reverse("all_issues"))
+            else:
+                # error, so display a error message
+                messages.error(request, "Unable to register your account!")
+
+    else:
+        # return an empty form
+        registerationForm = UserRegistrationForm()
+
+    return render(request, "bug-tracker/user-registration.html", {"registerationForm": registerationForm})
 
 
 def bugsView(request):

@@ -20,7 +20,11 @@
     <header>
         <nav>
             <div class="nav-wrapper green">
-                <a href="" class="brand-logo">Bug Tracker</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'all_issues' %}" class="brand-logo">Bug Tracker</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="brand-logo">Bug Tracker</a>
+                {% endif %}
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     {% if user.is_authenticated %}
@@ -50,6 +54,15 @@
         {% endblock %}
     </div>
     <!-- End Page Specific Content -->
+    {% if messages %}
+    <div class="container">
+        <div class="row">
+        {% for message in messages %}
+            <p id="{{ message.tags }}-message" class="msg msg-{{ message.tags }} z-depth-3 col-s12">{{message}}</p>         
+        {% endfor %}
+        </div>
+    </div>
+    {% endif %}
     <!-- Begin Footer -->
     <footer class="container-fluid">
         <div id="footer-details" class="row">

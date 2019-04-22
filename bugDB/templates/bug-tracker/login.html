@@ -4,9 +4,9 @@
 <div class="row">
     <h3 class="center-align">Open New Issue</h3>
 </div>
-<div class="row" id="form-container">
+<div class="row">
     <!-- Begin Form -->
-    <form method="POST" class="col s12" id="login-form">
+    <form method="POST" class="col s12">
         {% csrf_token %}
         <!-- Begin Username Element -->
         <div class="row">
@@ -32,13 +32,10 @@
             </button>
         </div>
         <!-- End Login Button -->
-        {% if messages %}
         <div>
-            {% for message in messages %}
-            <p id="error-message" class="msg msg-error z-depth-3 scale-transition">{{message}}</p>         
-            {% endfor %}
+            <p>Need an account? <a href="{% url 'registration' %}">Click here to Register</a></p>
+            <p>Reset Password? <a href="{% url 'password_reset' %}">Click here</a></p>
         </div>
-        {% endif %}
     </form>
     <!-- End Form -->
 </div>

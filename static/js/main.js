@@ -53,10 +53,13 @@ $(function(){
 
         // if form error or success message is shown, then hide it after 2 seconds
         if($("#error-message").html()){
+
             setTimeout(function(){
                 $("#error-message").fadeOut();
             }, 2000);
+
         } else if($("#success-message").html()){
+
             setTimeout(function(){
                 $("#success-message").fadeOut();
             }, 2000);

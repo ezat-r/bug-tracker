@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% block pageTitle %}Bug Tracker - Register{% endblock%}
+{% block content %}
+<div class="row">
+    <h3 class="center-align">Register</h3>
+</div>
+<div class="row" id="form-container">
+    <!-- Begin Form -->
+    <form method="POST" class="col s12" id="login-form">
+        {% csrf_token %}
+        {{registerationForm | as_bootstrap}}
+
+        <!-- Begin Login Button -->
+        <div class="center-align">
+            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit">Register
+            </button>
+        </div>
+        <!-- End Login Button -->
+    </form>
+    <!-- End Form -->
+    <div>
+        <p>Already Registered? <a href="{% url 'login' %}">Click here to Login</a></p>
+    </div>
+</div>
+{% endblock %}
