@@ -8,17 +8,17 @@ $(function(){
         $('select').formSelect();
 
         // Hide/show helper message for 'recipe_ingredients' textarea
-        $("#issue_description").focusin(function(){
+        $("#description").focusin(function(){
             $("#form-helper1").toggleClass("element-hide");
         });
 
-        $("#issue_description").focusout(function(){
+        $("#description").focusout(function(){
             $("#form-helper1").toggleClass("element-hide");
         });
 
         // select element event handler for the 'issue_type' - change prefix icon according to element selected
-        $("#issue_type").on("change", function(){
-            var value = $("#issue_type").val();
+        $("#issueType").on("change", function(){
+            var value = $("#issueType").val();
 
             if(value == "bug"){
                 $("#issue_type_icon").removeClass("fa-plus").removeClass("green-icon");
@@ -30,8 +30,8 @@ $(function(){
         });
 
         // select element event handler for the 'issue_priority' - change prefix icon according to element selected
-        $("#issue_priority").on("change", function(){
-            var value = $("#issue_priority").val();
+        $("#issuePriority").on("change", function(){
+            var value = $("#issuePriority").val();
 
             $("#issue_priority_icon").removeClass();
 
@@ -50,7 +50,38 @@ $(function(){
     }else if(document.title == "Bug Tracker - Sign In"){
         $("#id_username").addClass("validate");
         $("#id_password").addClass("validate");
+        
+    }else if(document.title == "All Issues"){
+        // show priority icons instead of the actual values.
+        // Icons will be displayed in the table.
 
+        liVals = $(".priority");
+        console.log(liVals)
+
+        for(var i=0; i< liVals.length; i++){
+            val = liVals[i]
+            if($(val).hasClass("triage_required")){
+                $(val).addClass("fa fa-minus-circle red-icon prefix");
+
+            }else if($(val).hasClass("severe")){
+                $(val).addClass("fa fa-ban red-icon prefix");
+
+            }else if($(val).hasClass("must_fix")){
+                $(val).addClass("fa fa-arrow-up red-icon prefix");
+
+            }else if($(val).hasClass("desirable")){
+                $(val).addClass("fa fa-angle-double-up red-icon prefix");
+
+            }else if($(val).hasClass("unlikely")){
+
+                $(val).addClass("fa fa-angle-double-down green-icon prefix");
+            }
+        }
+    }
+
+    statusMessageHandler();
+
+    function statusMessageHandler(){
         // if form error or success message is shown, then hide it after 2 seconds
         if($("#error-message").html()){
 
@@ -64,7 +95,5 @@ $(function(){
                 $("#success-message").fadeOut();
             }, 2000);
         }
-
-        
     }
 });

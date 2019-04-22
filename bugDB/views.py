@@ -3,6 +3,11 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import UserLoginForm, UserRegistrationForm
+from .models import Issue
+from .forms import IssueForm
+
+
+# Login handling
 
 def login(request):
 
@@ -40,6 +45,8 @@ def login(request):
 
     return render(request, "bug-tracker/login.html", {"loginForm": loginForm})
 
+
+# Log out handling
 
 @login_required
 def logout(request):
@@ -91,13 +98,60 @@ def registration(request):
     return render(request, "bug-tracker/user-registration.html", {"registerationForm": registerationForm})
 
 
+# Bugs view handling
+
+@login_required
 def bugsView(request):
+    
+    issues = Issue.objects.order_by("-updatedDate")
 
-    return render(request, "bug-tracker/all-issues.html")
+    issueEntries = {"issues": issues}
 
+    return render(request, "bug-tracker/all-issues.html", issueEntries)
+
+
+# create Issue handling
+@login_required
 def createTicket(request):
 
-    return render(request, "bug-tracker/create-new-issue.html")
+    clearMessages(request)
+
+    # check if form has been submitted
+    if request.method == "POST":
+        # Form submitted, so instantiate a form using POST data
+
+        formDict ={
+            "projectName": request.POST["projectName"],
+            "issueType": request.POST["issueType"],
+            "issuePriority": request.POST["issuePriority"],
+            "title": request.POST["title"],
+            "affectsVersion": request.POST["affectsVersion"],
+            "foundInBuild": request.POST["foundInBuild"],
+            "description": request.POST["description"],
+            "status": "Open",
+            "reporter": request.user.username,
+        }
+
+        issueForm = IssueForm(formDict)
+
+        # check if form is valid
+        if issueForm.is_valid():
+            # it's valid, so save it
+            
+            issueForm.save()
+
+            messages.success(request, "Created new Issue successfully!")
+
+            return redirect(reverse("all_issues")) 
+        else:
+            # failed so display an error
+            messages.error(request, "Unable to create Issue!")
+
+    else:
+        # otherwise, return an empty form
+        issueForm = IssueForm()
+
+    return render(request, "bug-tracker/create-new-issue.html", {"issueForm": issueForm})
 
 # method used to clear messages
 def clearMessages(request):

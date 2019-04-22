@@ -5,6 +5,7 @@ from . import password_reset_urls
 # URLs specific to the 'bugDB' app
 
 urlpatterns = [
+    url(r'^$', login, name="login"),
     url(r'^all/$', bugsView, name="all_issues"),
     url(r'^create/$', createTicket, name="create_issue"),
     url(r'^login/$', login, name="login"),

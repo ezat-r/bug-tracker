@@ -1,40 +1,30 @@
 {% extends "base.html" %}
-{% block pageTitle %}All Bugs{% endblock%}
+{% block pageTitle %}All Issues{% endblock%}
 {% block content %}
 <table>
         <thead>
-        <tr>
-            <th>P</th>
-            <th>Id</th>
-            <th>Summary</th>
-            <th>Assignee</th>
-            <th>Status</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th>Affects Version</th>
-        </tr>
+            <tr>
+                <th>P</th>
+                <th>Id</th>
+                <th>Summary</th>
+                <th>Reporter</th>
+                <th>Status</th>
+                <th>Updated</th>
+                <th>Affects Version</th>
+            </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>M</td>
-            <td>Test-1</td>
-            <td>Test Bug - This is a test bug!</td>
-            <td>John Doe</td>
-            <td>Open</td>
-            <td>16/04/2019</td>
-            <td>17/04/2019</td>
-            <td>v11.1.1</td>
-        </tr>
-        <tr>
-            <td>M</td>
-            <td>Test-2</td>
-            <td>Test Bug2 - This is a test bug2!</td>
-            <td>Mary Jane</td>
-            <td>Fixed</td>
-            <td>16/04/2019</td>
-            <td>17/04/2019</td>
-            <td>v11.1.1</td>
-        </tr>
+            {% for issue in issues %}
+            <tr>
+                <td><li class="priority {{issue.issuePriority}}"></li></td>
+                <td>{{issue.projectName}}-{{issue.id}}</td>
+                <td>{{issue.title}}</td>
+                <td>{{issue.reporter}}</td>
+                <td>{{issue.status}}</td>
+                <td>{{issue.updatedDate}}</td>
+                <td>{{issue.affectsVersion}}</td>
+            </tr>
+            {% endfor %}
     </tbody>
 </table>
 {% endblock %}

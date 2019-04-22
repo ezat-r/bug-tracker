@@ -1,7 +1,9 @@
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from .models import Issue
 
 class UserLoginForm(forms.Form):
     #Form to be used to login users
@@ -41,3 +43,11 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError("Passwords must match")
         
         return password2
+
+class IssueForm(ModelForm):
+    class Meta:
+        model = Issue
+        fields = ("projectName", "issueType", "issuePriority", "issuePriority", "title", "affectsVersion", "foundInBuild", "description", "status", "reporter")
+    
+
+    
