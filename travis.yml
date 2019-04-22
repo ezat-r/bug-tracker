@@ -1,0 +1,8 @@
+language: python
+python:
+  - "3.6"
+install: "pip install -r requirements.txt"
+before_install:
+  - chmod +x ./manage.py
+script:
+  - SECRET_KEY='whatever' ./manage.py test
