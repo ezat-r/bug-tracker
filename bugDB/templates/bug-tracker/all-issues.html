@@ -17,8 +17,8 @@
             {% for issue in issues %}
             <tr>
                 <td><li class="priority {{issue.issuePriority}}"></li></td>
-                <td>{{issue.projectName}}-{{issue.id}}</td>
-                <td>{{issue.title}}</td>
+                <td><a href="view-issue/{{issue.id}}/">{{issue.projectName}}-{{issue.id}}</a></td>
+                <td><a href="view-issue/{{issue.id}}/">{{issue.title}}</a></td>
                 <td>{{issue.reporter}}</td>
                 <td>{{issue.status}}</td>
                 <td>{{issue.updatedDate}}</td>

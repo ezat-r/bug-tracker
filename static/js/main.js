@@ -37,12 +37,16 @@ $(function(){
 
             if(value == "triage_required"){
                 $("#issue_priority_icon").addClass("fa fa-minus-circle red-icon prefix");
+
             }else if(value == "severe"){
                 $("#issue_priority_icon").addClass("fa fa-ban red-icon prefix");
+
             }else if(value == "must_fix"){
                 $("#issue_priority_icon").addClass("fa fa-arrow-up red-icon prefix");
+
             }else if(value == "desirable"){
                 $("#issue_priority_icon").addClass("fa fa-angle-double-up red-icon prefix");
+                
             }else if(value == "unlikely"){
                 $("#issue_priority_icon").addClass("fa fa-angle-double-down green-icon prefix");
             }

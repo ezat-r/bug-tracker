@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block pageTitle %}{{issue.projectName}}-{{issue.id}}{% endblock%}
+{% block content %}
+<!-- Begin Bug Title -->
+<div>
+    <h5>{{issue.title}}</h5>
+</div>
+<!-- End Bug Title -->
+<!-- Begin Bug Information -->
+<div class="row">
+    <div class="col s6">
+        <p><strong>Issue ID:</strong> {{issue.projectName}}-{{issue.id}}</p>
+        <p><strong>Type:</strong> {{issue.issueType}}</p>
+        <p><strong>Priority:</strong> {{issue.issuePriority}}</p>
+        <p><strong>Affects Version:</strong> {{issue.affectsVersion}}</p>
+        <p><strong>Found In Build#:</strong> {{issue.foundInBuild}}</p>
+    </div>
+    <div class="col s6">
+        <p><strong>Status:</strong> {{issue.status}}</p>
+        <p><strong>Reported By:</strong> {{issue.reporter}}</p>
+        <p><strong>Created Date:</strong> {{issue.createdDate}}</p>
+        <p><strong>Last Updated:</strong> {{issue.updatedDate}}</p>
+    </div>
+</div>
+<!-- End Bug Information -->
+<!-- Begin Bug Description -->
+<div class="row">
+    <p><strong>Description:</strong></p>
+    <p>{{issue.description}}</p>
+</div>
+<!-- End Bug Description -->
+
+{% endblock %}

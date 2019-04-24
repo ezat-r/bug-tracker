@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -98,16 +98,27 @@ def registration(request):
     return render(request, "bug-tracker/user-registration.html", {"registerationForm": registerationForm})
 
 
-# Bugs view handling
+# Issue view handling
 
+# all issues view handler
 @login_required
-def bugsView(request):
+def allIssuesView(request):
     
     issues = Issue.objects.order_by("-updatedDate")
 
     issueEntries = {"issues": issues}
 
     return render(request, "bug-tracker/all-issues.html", issueEntries)
+
+# individual issue detailed view handler
+@login_required
+def issueDetailedView(request, id):
+    
+    issue = get_object_or_404(Issue, pk=id)
+
+    issueEntry = {"issue": issue}
+
+    return render(request, "bug-tracker/bug-detailed-view.html", issueEntry)
 
 
 # create Issue handling
