@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-from .models import Issue
+from .models import Issue, IssueComments
 
 class UserLoginForm(forms.Form):
     #Form to be used to login users
@@ -47,7 +47,12 @@ class UserRegistrationForm(UserCreationForm):
 class IssueForm(ModelForm):
     class Meta:
         model = Issue
-        fields = ("projectName", "issueType", "issuePriority", "issuePriority", "title", "affectsVersion", "foundInBuild", "description", "status", "reporter")
+        fields = ("projectName", "issueType", "issuePriority", "issuePriority", "title", "affectsVersion", "foundInBuild", "description", "status")
+
+class IssueCommentsForm(ModelForm):
+    class Meta:
+        model = IssueComments
+        fields = ("comment", )
     
 
     

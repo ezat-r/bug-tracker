@@ -3,8 +3,8 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import UserLoginForm, UserRegistrationForm
-from .models import Issue
-from .forms import IssueForm
+from .models import Issue, IssueComments
+from .forms import IssueForm, IssueCommentsForm
 
 
 # Login handling
@@ -60,6 +60,7 @@ def logout(request):
 
     return redirect(reverse("login"))
 
+# new user registration handling
 def registration(request):
     clearMessages(request)
 
@@ -101,8 +102,12 @@ def registration(request):
 # Issue view handling
 
 # all issues view handler
-@login_required
 def allIssuesView(request):
+
+    # check if user is already logged in
+    if request.user.is_authenticated == False:
+        # user is not logged in, so redirect to login page
+        return redirect(reverse("login"))
     
     issues = Issue.objects.order_by("-updatedDate")
 
@@ -115,8 +120,19 @@ def allIssuesView(request):
 def issueDetailedView(request, id):
     
     issue = get_object_or_404(Issue, pk=id)
+    
+    allComments = IssueComments.objects.order_by("-commentDate")
 
-    issueEntry = {"issue": issue}
+    issueComments = []
+
+    for i in range(0, len(allComments)):
+        if allComments[i].issueId == issue:
+            issueComments.append(allComments[i])
+    
+    commentForm = IssueCommentsForm()
+
+    issueEntry = {"issue": issue, "comments": issueComments, "commentsForm": commentForm}
+
 
     return render(request, "bug-tracker/bug-detailed-view.html", issueEntry)
 
@@ -139,8 +155,7 @@ def createTicket(request):
             "affectsVersion": request.POST["affectsVersion"],
             "foundInBuild": request.POST["foundInBuild"],
             "description": request.POST["description"],
-            "status": "Open",
-            "reporter": request.user.username,
+            "status": "Open"
         }
 
         issueForm = IssueForm(formDict)
@@ -149,7 +164,9 @@ def createTicket(request):
         if issueForm.is_valid():
             # it's valid, so save it
             
-            issueForm.save()
+            instance = issueForm.save(commit=False)
+            instance.reporter = request.user
+            instance.save()
 
             messages.success(request, "Created new Issue successfully!")
 

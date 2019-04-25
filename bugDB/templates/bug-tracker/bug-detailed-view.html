@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block pageTitle %}{{issue.projectName}}-{{issue.id}}{% endblock%}
 {% block content %}
+
 <!-- Begin Bug Title -->
 <div>
     <h5>{{issue.title}}</h5>
@@ -29,5 +30,38 @@
     <p>{{issue.description}}</p>
 </div>
 <!-- End Bug Description -->
-
+<div class="row">
+    <p><strong>Comments:</strong></p>
+    {% if comments %}
+    {% for comment in comments %}
+    <p><i><strong>{{comment.user}}</strong> commented on {{comment.commentDate}}</i></p>
+    <p>> {{comment.comment}}</p>
+    {% endfor %}
+    {% else %}
+    <p>No comments added yet...</p>
+    {% endif %}
+</div>
+<div class="row">
+    <form action="" method="POST" class="col s12">
+        {% csrf_token %}
+        <!-- Begin Issue Comment Element -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">format_list_numbered</i>
+                <textarea name="description" id="description" class="materialize-textarea" required></textarea>
+                {{commentsForm.comment}}
+                <label for="description">Description</label>
+            </div>
+            <p id="form-helper1" class="helper-message element-hide">Press 'Enter' to add a new line!</p>
+        </div>
+        <!-- End Issue Comment Element -->
+        <!-- Begin Create Comment Button -->
+        <div class="center-align">
+            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit">Add Comment
+            </button>
+        </div>
+        <!-- End Create Comment Button -->
+    </form>
+    <!-- End Form -->
+</div>
 {% endblock %}
