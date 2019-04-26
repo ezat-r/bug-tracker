@@ -102,6 +102,10 @@ footer{
     font-size: 14px;
 }
 
+::placeholder {
+    color: grey;
+  }
+
 /* Media Queries */
 
 @media screen and (max-width: 600px){

@@ -129,7 +129,21 @@ def issueDetailedView(request, id):
         if allComments[i].issueId == issue:
             issueComments.append(allComments[i])
     
-    commentForm = IssueCommentsForm()
+    if request.method == "POST":
+
+        commentForm = IssueCommentsForm(request.POST)
+
+        if commentForm.is_valid():
+            instance = commentForm.save(commit=False)
+            instance.user = request.user
+            instance.issueId = issue
+            instance.save()
+
+            messages.success(request, "Comment added successfully!")
+
+            return redirect("detailed_view", id=id) 
+    else:
+        commentForm = IssueCommentsForm()
 
     issueEntry = {"issue": issue, "comments": issueComments, "commentsForm": commentForm}
 
