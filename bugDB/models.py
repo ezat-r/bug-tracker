@@ -10,6 +10,7 @@ class Issue(models.Model):
     affectsVersion = models.CharField(max_length=30)
     foundInBuild = models.CharField(max_length=30)
     description = models.TextField()
+    resolution = models.CharField(max_length=30)
     status = models.CharField(max_length=30)
     reporter = models.ForeignKey(User, default=None)
     

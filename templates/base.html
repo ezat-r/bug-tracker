@@ -48,13 +48,8 @@
         </ul>
     </header>
     <!-- End Navigation -->
-    <!-- Begin Page Specific Content -->
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <!-- End Page Specific Content -->
     {% if messages %}
+    <!-- Begin Messages -->
     <div class="container">
         <div class="row">
         {% for message in messages %}
@@ -62,7 +57,14 @@
         {% endfor %}
         </div>
     </div>
+    <!-- End Messages -->
     {% endif %}
+    <!-- Begin Page Specific Content -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!-- End Page Specific Content -->
     <!-- Begin Footer -->
     <footer class="container-fluid">
         <div id="footer-details" class="row">

@@ -1,8 +1,7 @@
 
 $(function(){
 
-    if(document.title == "Create New Issue"){
-        // JS for the 'create-new-issue.html' page
+    if(document.title == "Create New Issue" || document.title == "Edit Issue"){
 
         // Materialize CSS - Form Select tag initialisation
         $('select').formSelect();
@@ -16,41 +15,36 @@ $(function(){
             $("#form-helper1").toggleClass("element-hide");
         });
 
-        // select element event handler for the 'issue_type' - change prefix icon according to element selected
+        // select element event handler for the 'issue_type'
         $("#issueType").on("change", function(){
-            var value = $("#issueType").val();
 
-            if(value == "bug"){
-                $("#issue_type_icon").removeClass("fa-plus").removeClass("green-icon");
-                $("#issue_type_icon").addClass("fa-minus-square").addClass("red-icon");
-            }else{
-                $("#issue_type_icon").removeClass("fa-minus-square").removeClass("red-icon");
-                $("#issue_type_icon").addClass("fa-plus").addClass("green-icon");
-            }
+            issueTypeIconHandler("#issueType");
         });
 
-        // select element event handler for the 'issue_priority' - change prefix icon according to element selected
+        // select element event handler for the 'issue_priority'
         $("#issuePriority").on("change", function(){
-            var value = $("#issuePriority").val();
+            // call iconCorrector function to correctly set priority icon correctly
+            issuePriorityIconHandler("#issuePriority");
 
-            $("#issue_priority_icon").removeClass();
-
-            if(value == "triage_required"){
-                $("#issue_priority_icon").addClass("fa fa-minus-circle red-icon prefix");
-
-            }else if(value == "severe"){
-                $("#issue_priority_icon").addClass("fa fa-ban red-icon prefix");
-
-            }else if(value == "must_fix"){
-                $("#issue_priority_icon").addClass("fa fa-arrow-up red-icon prefix");
-
-            }else if(value == "desirable"){
-                $("#issue_priority_icon").addClass("fa fa-angle-double-up red-icon prefix");
-                
-            }else if(value == "unlikely"){
-                $("#issue_priority_icon").addClass("fa fa-angle-double-down green-icon prefix");
-            }
         });
+
+        if(document.title == "Edit Issue"){
+            var projectVal = $("#projectName").data("value");
+            $("#projectName").val(projectVal);
+            $("#projectName").click().click();
+
+            var issueTypeVal = $("#issueType").data("value");
+            $("#issueType").val(issueTypeVal);
+            $("#issueType").click().click();
+            issueTypeIconHandler("#issueType");
+
+            var priorityVal = $("#issuePriority").data("value");
+            $("#issuePriority").val(priorityVal);
+            $(".select-dropdown.dropdown-trigger").click().click();
+            issuePriorityIconHandler("#issuePriority");
+
+        }
+
     }else if(document.title == "Bug Tracker - Sign In"){
         $("#id_username").addClass("validate");
         $("#id_password").addClass("validate");
@@ -60,7 +54,6 @@ $(function(){
         // Icons will be displayed in the table.
 
         liVals = $(".priority");
-        console.log(liVals)
 
         for(var i=0; i< liVals.length; i++){
             val = liVals[i]
@@ -81,6 +74,12 @@ $(function(){
                 $(val).addClass("fa fa-angle-double-down green-icon prefix");
             }
         }
+    }else if(document.title == "View Issue"){
+        // Initialize all modals
+        $('.modal').modal();
+
+        // Materialize CSS - Form Select tag initialisation
+        $('select').formSelect();
     }
 
     statusMessageHandler();
@@ -99,5 +98,46 @@ $(function(){
                 $("#success-message").fadeOut();
             }, 2000);
         }
+    }
+
+    // change prefix icon according to element selected - bug or improvement
+    function issueTypeIconHandler(id){
+        var value = $(id).val();
+
+        if(value == "bug"){
+            $("#issue_type_icon").removeClass("fa-plus").removeClass("green-icon");
+            $("#issue_type_icon").addClass("fa-minus-square").addClass("red-icon");
+        }else{
+            $("#issue_type_icon").removeClass("fa-minus-square").removeClass("red-icon");
+            $("#issue_type_icon").addClass("fa-plus").addClass("green-icon");
+        }
+    }
+
+    // change prefix icon according to selected option for the issuePriority select element
+    function issuePriorityIconHandler(id){
+        var value = $(id).val();
+
+        $("#issue_priority_icon").removeClass();
+
+        if(value == "triage_required"){
+            $("#issue_priority_icon").addClass("fa fa-minus-circle red-icon prefix");
+
+        }else if(value == "severe"){
+            $("#issue_priority_icon").addClass("fa fa-ban red-icon prefix");
+
+        }else if(value == "must_fix"){
+            $("#issue_priority_icon").addClass("fa fa-arrow-up red-icon prefix");
+
+        }else if(value == "desirable"){
+            $("#issue_priority_icon").addClass("fa fa-angle-double-up red-icon prefix");
+            
+        }else if(value == "unlikely"){
+            $("#issue_priority_icon").addClass("fa fa-angle-double-down green-icon prefix");
+        }
+    }
+
+    function selectElementCorrector(iconId, selectId, template){
+        $(selectId).remove();
+
     }
 });

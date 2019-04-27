@@ -1,30 +1,36 @@
 {% extends "base.html" %}
 {% block pageTitle %}All Issues{% endblock%}
 {% block content %}
+{% if issues %}
 <table>
-        <thead>
-            <tr>
-                <th>P</th>
-                <th>Id</th>
-                <th>Summary</th>
-                <th>Reporter</th>
-                <th>Status</th>
-                <th>Updated</th>
-                <th>Affects Version</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for issue in issues %}
-            <tr>
-                <td><li class="priority {{issue.issuePriority}}"></li></td>
-                <td><a href="view-issue/{{issue.id}}/">{{issue.projectName}}-{{issue.id}}</a></td>
-                <td><a href="view-issue/{{issue.id}}/">{{issue.title}}</a></td>
-                <td>{{issue.reporter}}</td>
-                <td>{{issue.status}}</td>
-                <td>{{issue.updatedDate}}</td>
-                <td>{{issue.affectsVersion}}</td>
-            </tr>
-            {% endfor %}
-    </tbody>
+    <thead>
+        <tr>
+            <th>P</th>
+            <th>Id</th>
+            <th>Summary</th>
+            <th>Reporter</th>
+            <th>Status</th>
+            <th>Updated</th>
+            <th>Affects Version</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for issue in issues %}
+        <tr>
+            <td><li class="priority {{issue.issuePriority}}"></li></td>
+            <td><a href="{% url 'all_issues' %}view-issue/{{issue.id}}/">{{issue.projectName}}-{{issue.id}}</a></td>
+            <td><a href="{% url 'all_issues' %}view-issue/{{issue.id}}/">{{issue.title}}</a></td>
+            <td>{{issue.reporter}}</td>
+            <td>{{issue.status}}</td>
+            <td>{{issue.updatedDate}}</td>
+            <td>{{issue.affectsVersion}}</td>
+        </tr>
+        {% endfor %}
+</tbody>
 </table>
+{% else %}
+<div class="row">
+    <h5>No issues created...</h5>
+</div>
+{% endif %}
 {% endblock %}

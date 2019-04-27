@@ -49,6 +49,12 @@
     font-style: italic;
 }
 
+/* Issue Detailed view - buttons */
+
+.issue-btn{
+    margin: 5px;
+}
+
 /* Footer */
 
 footer{

@@ -1,19 +1,19 @@
 {% extends "base.html" %}
-{% load bootstrap_tags %}
-{% block pageTitle %}Create New Issue{% endblock %}
+<!-- {% load bootstrap_tags %} -->
+{% block pageTitle %}Edit Issue{% endblock %}
 {% block content %}
 <div class="row">
-    <h3 class="center-align">Open New Issue</h3>
+    <h3 class="center-align">Edit Issue</h3>
 </div>
 <div class="row">
     <!-- Begin Form -->
-    <form action="" method="POST" class="col s12">
+    <form method="POST" class="col s12">
         {% csrf_token %}
         <!-- Begin Project Select Element -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">apps</i>
-                <select id="projectName" name="projectName">
+                <select id="projectName" name="projectName" data-value="{{issue.projectName}}">
                     <option selected>Project A</option>
                     <option>Project B</option>
                     <option>Project C</option>
@@ -26,7 +26,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i id="issue_type_icon" class="fa fa-minus-square red-icon prefix"></i>
-                <select id="issueType" name="issueType">
+                <select id="issueType" name="issueType" data-value="{{issue.issueType}}">
                     <option value="bug" selected>Bug</option>
                     <option value="feature_request">Feature Request</option>
                 </select>
@@ -38,8 +38,8 @@
         <div class="row">
             <div class="input-field col s12">
                 <i id="issue_priority_icon" class="fa fa-minus-circle red-icon prefix"></i>
-                <select id="issuePriority" name="issuePriority">
-                    <option value="triage_required" selected>Triage Required</option>
+                <select id="issuePriority" name="issuePriority" data-value="{{issue.issuePriority}}">
+                    <option value="triage_required">Triage Required</option>
                     <option value="severe">Severe</option>
                     <option value="must_fix">Must Fix</option>
                     <option value="desirable">Desirable To Fix</option>
@@ -53,7 +53,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">title</i>
-                <input id="title" type="text" name="title" class="validate" required>
+                <input id="title" type="text" name="title" class="validate" value="{{issue.title}}" required>
                 <label for="title">Title</label>
             </div>
         </div>
@@ -62,7 +62,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa fa-sort-numeric-asc prefix"></i>
-                <input id="affectsVersion" type="text" name="affectsVersion" class="validate" required>
+                <input id="affectsVersion" type="text" name="affectsVersion" class="validate" value="{{issue.affectsVersion}}" required>
                 <label for="affectsVersion">Affects Version</label>
             </div>
         </div>
@@ -71,7 +71,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa fa-slack prefix"></i>
-                <input id="foundInBuild" type="text" name="foundInBuild" class="validate" required>
+                <input id="foundInBuild" type="text" name="foundInBuild" class="validate" value="{{issue.foundInBuild}}" required>
                 <label for="foundInBuild">Found In Build#</label>
             </div>
         </div>
@@ -80,7 +80,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">format_list_numbered</i>
-                <textarea name="description" id="description" class="materialize-textarea" required></textarea>
+                <textarea name="description" id="description" class="materialize-textarea" required>{{issue.description}}</textarea>
                 <label for="description">Description</label>
             </div>
             <p id="form-helper1" class="helper-message element-hide">Press 'Enter' to add a new line!</p>
@@ -88,7 +88,7 @@
         <!-- End Issue Description Element -->
         <!-- Begin Create Issue Button -->
         <div class="center-align">
-            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit">Create
+            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit">Update
             </button>
         </div>
         <!-- End Create Issue Button -->

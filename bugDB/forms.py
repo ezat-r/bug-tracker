@@ -47,7 +47,7 @@ class UserRegistrationForm(UserCreationForm):
 class IssueForm(ModelForm):
     class Meta:
         model = Issue
-        fields = ("projectName", "issueType", "issuePriority", "issuePriority", "title", "affectsVersion", "foundInBuild", "description", "status")
+        fields = ("projectName", "issueType", "issuePriority", "title", "affectsVersion", "foundInBuild", "description", "status", "resolution")
 
 class IssueCommentsForm(ModelForm):
     class Meta:

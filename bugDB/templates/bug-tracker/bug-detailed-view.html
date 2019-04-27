@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block pageTitle %}{{issue.projectName}}-{{issue.id}}{% endblock%}
+{% block pageTitle %}View Issue{% endblock%}
 {% block content %}
 
 <!-- Begin Bug Title -->
@@ -18,9 +18,14 @@
     </div>
     <div class="col s6">
         <p><strong>Status:</strong> {{issue.status}}</p>
+        <p><strong>Resolution:</strong> {{issue.resolution}}</p>
         <p><strong>Reported By:</strong> {{issue.reporter}}</p>
         <p><strong>Created Date:</strong> {{issue.createdDate}}</p>
         <p><strong>Last Updated:</strong> {{issue.updatedDate}}</p>
+        <p>
+            <a data-target="modal1" class="btn green issue-btn modal-trigger">Resolve</a>
+            <a href="{% url 'all_issues' %}edit-issue/{{issue.id}}/" class="btn purple issue-btn">Edit</a>
+            <a data-target="modal2" class="btn red issue-btn modal-trigger">Close</a></p>
     </div>
 </div>
 <!-- End Bug Information -->
@@ -30,6 +35,7 @@
     <p>{{issue.description}}</p>
 </div>
 <!-- End Bug Description -->
+<!-- Begin Bug Comments -->
 <div class="row">
     <p><strong>Comments:</strong></p>
     {% if comments %}
@@ -41,13 +47,14 @@
     <p>No comments added yet...</p>
     {% endif %}
 </div>
+<!-- End Bug Comments -->
+<!-- Begin Comment Form -->
 <div class="row">
     <form action="" method="POST" class="col s12">
         {% csrf_token %}
         <!-- Begin Issue Comment Element -->
         <div class="row">
             <div class="input-field col s12">
-                <!-- <textarea name="description" id="description" class="materialize-textarea" required></textarea> -->
                 {{commentsForm.comment}}
                 <label for="comment">Comment</label>
             </div>
@@ -61,6 +68,67 @@
         </div>
         <!-- End Create Comment Button -->
     </form>
-    <!-- End Form -->
 </div>
+<!-- End Comment Form -->
+<!-- Begin Issue Resolve Modal -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h5>Resolve Issue:</h5>
+        <form action="{% url 'all_issues' %}resolve-issue/{{issue.id}}/" method="POST">
+            {% csrf_token %}
+            <!-- Begin Resolution Select Element -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="resolution" name="resolution">
+                        <option selected>Fixed</option>
+                        <option>Won't Fix</option>
+                        <option>Need More Info</option>
+                    </select>
+                    <label>Resolution</label>
+                </div>
+            </div>
+            <!-- End Resolution Select Element -->
+            <!-- Begin Issue Comment Element -->
+            <div class="row">
+                <div class="input-field col s12">
+                    {{commentsForm.comment}}
+                    <label for="comment">Comment</label>
+                </div>
+                <p id="form-helper1" class="helper-message element-hide">Press 'Enter' to add a new line!</p>
+            </div>
+            <!-- End Issue Comment Element -->
+            <!-- Begin Form Button -->
+            <div class="center-align">
+                <button class="waves-effect waves-light btn green" id="resolve_btn" type="submit">Resolve
+                </button>
+            </div>
+            <!-- End Form Button -->
+        </form>
+    </div>
+</div>
+<!-- End Issue Resolve Modal -->
+<!-- Begin Issue Close Modal -->
+<div id="modal2" class="modal">
+        <div class="modal-content">
+            <h5>Close Issue:</h5>
+            <form action="{% url 'all_issues' %}close-issue/{{issue.id}}/" method="POST">
+                {% csrf_token %}
+                <!-- Begin Issue Comment Element -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{commentsForm.comment}}
+                        <label for="comment">Comment</label>
+                    </div>
+                </div>
+                <!-- End Issue Comment Element -->
+                <!-- Begin Form Button -->
+                <div class="center-align">
+                    <button class="waves-effect waves-light btn green" id="close_btn" type="submit">Close
+                    </button>
+                </div>
+                <!-- End Form Button -->
+            </form>
+        </div>
+    </div>
+    <!-- End Issue Resolve Modal -->
 {% endblock %}
