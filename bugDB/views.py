@@ -368,7 +368,7 @@ def clearMessages(request):
 
 # method to assign dict value - which will be passed along to either update
 # or create a new issue
-def getFormDict(requestForm, status="Open", resolution="Unresolved"):
+def getFormDict(requestForm):
 
     formDict ={
             "projectName": requestForm["projectName"],
@@ -377,9 +377,7 @@ def getFormDict(requestForm, status="Open", resolution="Unresolved"):
             "title": requestForm["title"],
             "affectsVersion": requestForm["affectsVersion"],
             "foundInBuild": requestForm["foundInBuild"],
-            "description": requestForm["description"],
-            "status": status,
-            "resolution": resolution
+            "description": requestForm["description"]
         }
     
     return formDict
