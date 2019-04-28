@@ -79,7 +79,6 @@ def registration(request):
             # it's valid, so save it
             registerationForm.save()
 
-            
             user = auth.authenticate(username=request.POST["username"], password=request.POST["password1"])
 
             # check if user is created fine
@@ -111,10 +110,12 @@ def allIssuesView(request):
         # user is not logged in, so redirect to login page
         return redirect(reverse("login"))
     
+    # grab all issues and sort them by the 'updatedDate' property
     issues = Issue.objects.order_by("-updatedDate")
 
     issueEntries = {"issues": issues}
 
+    # pass off all issues to a render
     return render(request, "bug-tracker/all-issues.html", issueEntries)
 
 
@@ -144,7 +145,7 @@ def issueDetailedView(request, id):
         # check form is valid
         if commentForm.is_valid():
 
-            # form is valid so go ahead and save
+            # form is valid, perform a save, but before the save is applied, update a couple of comment properties
             comForm = commentForm.save(commit=False)
 
             # assign the currently logged in user as the comments author/user
@@ -153,10 +154,11 @@ def issueDetailedView(request, id):
             # assign current issue as the 'issueId'
             comForm.issueId = issue
 
-            # update the 'updatedTime' property for the current issue
+            # update the 'updatedTime' property for the current issue & save the current issue
             issue.updatedDate = datetime.now()
             issue.save()
 
+            # go ahead and apply the save
             comForm.save()
 
             # give a success message and reload the current page
@@ -183,7 +185,6 @@ def issueDetailedView(request, id):
 ### Editing an existing issue
 
 # edit issue handler
-
 def editIssue(request, id):
 
     if request.user.is_authenticated == False:
@@ -216,6 +217,11 @@ def editIssue(request, id):
 
 # Resolving an issue
 def resolveIssue(request, id):
+
+    if request.user.is_authenticated == False:
+        # user is not logged in, redirect to login view
+        return redirect(reverse("login"))
+
     issue = get_object_or_404(Issue, pk=id)
 
     if request.method == "POST":
@@ -245,8 +251,11 @@ def resolveIssue(request, id):
 
 
 # Closing an issue
-# Resolving an issue
 def closeIssue(request, id):
+    if request.user.is_authenticated == False:
+        # user is not logged in, redirect to login view
+        return redirect(reverse("login"))
+
     issue = get_object_or_404(Issue, pk=id)
 
     if request.method == "POST":
@@ -275,11 +284,48 @@ def closeIssue(request, id):
             return redirect("detailed_view", id=id)
 
 
+# Re-opening of an issue
+def reOpenIssue(request, id):
+    if request.user.is_authenticated == False:
+        # user is not logged in, redirect to login view
+        return redirect(reverse("login"))
+
+    issue = get_object_or_404(Issue, pk=id)
+
+    if request.method == "POST":
+        issueComment = IssueCommentsForm({"comment": request.POST["comment"]})
+
+        if issueComment.is_valid():
+            commInstance = issueComment.save(commit=False)
+            commInstance.issueId = issue
+            commInstance.user = request.user
+            commInstance.save()
+
+            issue.updatedDate = datetime.now()
+
+            issue.status = "Re-Opened"
+            issue.resolution = "Unresolved"
+            issue.save()
+
+            # give a success message and reload back to detailed issue view
+            messages.success(request, "Issue re-opened successfully!")
+
+            return redirect("detailed_view", id=id)
+        
+        else:
+            # give a error message and reload back to detailed issue view
+            messages.error(request, "Error: Unable to re-open issue!")
+
+            return redirect("detailed_view", id=id)
+
 ### New issue creation
 
 # create Issue handling
-@login_required
 def createTicket(request):
+
+    if request.user.is_authenticated == False:
+        # user is not logged in, redirect to login view
+        return redirect(reverse("login"))
 
     clearMessages(request)
 

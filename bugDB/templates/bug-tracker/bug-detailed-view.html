@@ -23,9 +23,15 @@
         <p><strong>Created Date:</strong> {{issue.createdDate}}</p>
         <p><strong>Last Updated:</strong> {{issue.updatedDate}}</p>
         <p>
-            <a data-target="modal1" class="btn green issue-btn modal-trigger">Resolve</a>
-            <a href="{% url 'all_issues' %}edit-issue/{{issue.id}}/" class="btn purple issue-btn">Edit</a>
+            {% if issue.status == "Resolved" %}
+            <a data-target="modal3" class="btn orange issue-btn modal-trigger">Re-open</a>
             <a data-target="modal2" class="btn red issue-btn modal-trigger">Close</a></p>
+            {% elif issue.status == "Closed" %}
+            <a data-target="modal3" class="btn orange issue-btn modal-trigger">Re-open</a>
+            {% else %}
+            <a data-target="modal1" class="btn green issue-btn modal-trigger">Resolve</a>
+            {% endif %}
+            <a href="{% url 'all_issues' %}edit-issue/{{issue.id}}/" class="btn purple issue-btn">Edit</a>
     </div>
 </div>
 <!-- End Bug Information -->
@@ -109,26 +115,50 @@
 <!-- End Issue Resolve Modal -->
 <!-- Begin Issue Close Modal -->
 <div id="modal2" class="modal">
-        <div class="modal-content">
-            <h5>Close Issue:</h5>
-            <form action="{% url 'all_issues' %}close-issue/{{issue.id}}/" method="POST">
-                {% csrf_token %}
-                <!-- Begin Issue Comment Element -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{commentsForm.comment}}
-                        <label for="comment">Comment</label>
-                    </div>
+    <div class="modal-content">
+        <h5>Close Issue:</h5>
+        <form action="{% url 'all_issues' %}close-issue/{{issue.id}}/" method="POST">
+            {% csrf_token %}
+            <!-- Begin Issue Comment Element -->
+            <div class="row">
+                <div class="input-field col s12">
+                    {{commentsForm.comment}}
+                    <label for="comment">Comment</label>
                 </div>
-                <!-- End Issue Comment Element -->
-                <!-- Begin Form Button -->
-                <div class="center-align">
-                    <button class="waves-effect waves-light btn green" id="close_btn" type="submit">Close
-                    </button>
-                </div>
-                <!-- End Form Button -->
-            </form>
-        </div>
+            </div>
+            <!-- End Issue Comment Element -->
+            <!-- Begin Form Button -->
+            <div class="center-align">
+                <button class="waves-effect waves-light btn red" id="close_btn" type="submit">Close
+                </button>
+            </div>
+            <!-- End Form Button -->
+        </form>
     </div>
-    <!-- End Issue Resolve Modal -->
+</div>
+<!-- End Issue Resolve Modal -->
+<!-- Begin Issue Reopen Modal -->
+<div id="modal3" class="modal">
+    <div class="modal-content">
+        <h5>Re-Open Issue:</h5>
+        <form action="{% url 'all_issues' %}reopen-issue/{{issue.id}}/" method="POST">
+            {% csrf_token %}
+            <!-- Begin Issue Comment Element -->
+            <div class="row">
+                <div class="input-field col s12">
+                    {{commentsForm.comment}}
+                    <label for="comment">Comment</label>
+                </div>
+            </div>
+            <!-- End Issue Comment Element -->
+            <!-- Begin Form Button -->
+            <div class="center-align">
+                <button class="waves-effect waves-light btn orange" id="close_btn" type="submit">Re-Open
+                </button>
+            </div>
+            <!-- End Form Button -->
+        </form>
+    </div>
+</div>
+<!-- End Issue Reopen Modal -->
 {% endblock %}

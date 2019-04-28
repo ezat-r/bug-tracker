@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Model for issues
 class Issue(models.Model):
     
     projectName = models.CharField(max_length=30)
@@ -20,7 +21,7 @@ class Issue(models.Model):
     def __str__(self):
         return "{}-{}".format(self.projectName, self.id)
 
-
+# Model for issue comments - 1 - many relationship i.e. one issue can have multiple comments
 class IssueComments(models.Model):
 
     issueId = models.ForeignKey(Issue, default=None, on_delete=models.CASCADE)
