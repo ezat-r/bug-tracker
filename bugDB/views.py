@@ -215,6 +215,34 @@ def editIssue(request, id):
 
     return render(request, "bug-tracker/edit-issue.html", {"issue": issue})
 
+# Upvoting of issues
+def upVoteIssue(request, id):
+    if request.user.is_authenticated == False:
+        # user is not logged in, redirect to login view
+        return redirect(reverse("login"))
+    
+    issue = get_object_or_404(Issue, pk=id)
+
+    if request.method == "POST":
+        issueComment = IssueCommentsForm({"comment": request.POST["comment"]})
+
+        if issueComment.is_valid():
+            commInstance = issueComment.save(commit=False)
+            commInstance.issueId = issue
+            commInstance.user = request.user
+            commInstance.save()
+
+            # increment issue votes by 1
+            issue.votes += 1 
+            issue.updatedDate = datetime.now()
+            issue.save()
+
+        # give a success message and reload back to detailed issue view
+        messages.success(request, "Upvote successful!")
+        
+    return redirect("detailed_view", id=id)
+
+
 # Resolving an issue
 def resolveIssue(request, id):
 

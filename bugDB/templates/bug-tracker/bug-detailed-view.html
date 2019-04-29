@@ -24,14 +24,20 @@
         <p><strong>Last Updated:</strong> {{issue.updatedDate}}</p>
         <p>
             {% if issue.status == "Resolved" %}
-            <a data-target="modal3" class="btn orange issue-btn modal-trigger">Re-open</a>
-            <a data-target="modal2" class="btn red issue-btn modal-trigger">Close</a></p>
+            <a data-target="modal3" class="btn orange issue-btn modal-trigger"><i class="fa fa-share"></i> Re-open</a>
+            <a data-target="modal2" class="btn red issue-btn modal-trigger"><i class="fa fa-times-circle"></i> Close</a></p>
             {% elif issue.status == "Closed" %}
-            <a data-target="modal3" class="btn orange issue-btn modal-trigger">Re-open</a>
+            <a data-target="modal3" class="btn orange issue-btn modal-trigger"><i class="fa fa-share"></i> Re-open</a>
             {% else %}
-            <a data-target="modal1" class="btn green issue-btn modal-trigger">Resolve</a>
+            {% if request.user.is_superuser %}
+            <!-- if user is superuser or developer then show a resolve button -->
+            <a data-target="modal1" class="btn green issue-btn modal-trigger"><i class="fa fa-share-square-o"></i> Resolve</a>
+            {% else %}
+            <form action="""></form>
+            <a data-target="modal4" class="btn green modal-trigger"><i class="fa fa-arrow-up"></i> Up Vote</a>
             {% endif %}
-            <a href="{% url 'all_issues' %}edit-issue/{{issue.id}}/" class="btn purple issue-btn">Edit</a>
+            {% endif %}
+            <a href="{% url 'all_issues' %}edit-issue/{{issue.id}}/" class="btn purple issue-btn"><i class="fa fa-pencil"></i> Edit</a>
     </div>
 </div>
 <!-- End Bug Information -->
@@ -69,7 +75,7 @@
         <!-- End Issue Comment Element -->
         <!-- Begin Create Comment Button -->
         <div class="center-align">
-            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit">Add Comment
+            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit"><i class="fa fa-comment"></i> Add Comment
             </button>
         </div>
         <!-- End Create Comment Button -->
@@ -105,7 +111,7 @@
             <!-- End Issue Comment Element -->
             <!-- Begin Form Button -->
             <div class="center-align">
-                <button class="waves-effect waves-light btn green" id="resolve_btn" type="submit">Resolve
+                <button class="waves-effect waves-light btn green" id="resolve_btn" type="submit"><i class="fa fa-share-square-o"></i> Resolve
                 </button>
             </div>
             <!-- End Form Button -->
@@ -129,7 +135,7 @@
             <!-- End Issue Comment Element -->
             <!-- Begin Form Button -->
             <div class="center-align">
-                <button class="waves-effect waves-light btn red" id="close_btn" type="submit">Close
+                <button class="waves-effect waves-light btn red" id="close_btn" type="submit"><i class="fa fa-times-circle"></i> Close
                 </button>
             </div>
             <!-- End Form Button -->
@@ -153,7 +159,7 @@
             <!-- End Issue Comment Element -->
             <!-- Begin Form Button -->
             <div class="center-align">
-                <button class="waves-effect waves-light btn orange" id="close_btn" type="submit">Re-Open
+                <button class="waves-effect waves-light btn orange" id="close_btn" type="submit"><i class="fa fa-share"></i> Re-Open
                 </button>
             </div>
             <!-- End Form Button -->
@@ -161,4 +167,28 @@
     </div>
 </div>
 <!-- End Issue Reopen Modal -->
+<!-- Begin Issue Upvote Modal -->
+<div id="modal4" class="modal">
+    <div class="modal-content">
+        <h5>Up Vote Issue:</h5>
+        <form action="{% url 'all_issues' %}up-vote/{{issue.id}}/" method="POST">
+            {% csrf_token %}
+            <!-- Begin Issue Comment Element -->
+            <div class="row">
+                <div class="input-field col s12">
+                    {{commentsForm.comment}}
+                    <label for="comment">Comment</label>
+                </div>
+            </div>
+            <!-- End Issue Comment Element -->
+            <!-- Begin Form Button -->
+            <div class="center-align">
+                <button class="waves-effect waves-light btn green" id="upvote_btn" type="submit"><i class="fa fa-arrow-up"></i> Up Vote
+                </button>
+            </div>
+            <!-- End Form Button -->
+        </form>
+    </div>
+</div>
+<!-- End Issue Upvote Modal -->
 {% endblock %}

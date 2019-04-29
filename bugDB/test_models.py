@@ -18,6 +18,19 @@ class TestItemModel(TestCase):
         self.assertEqual(issue.status, "Open")
         self.assertEqual(issue.resolution, "Unresolved")
     
+
+    def test_NewIssueVotesDefaultsToCorrectValue(self):
+        # create a test user
+        user = User.objects.create_user(username="test_user", email=None, password=None)
+
+        issue = Issue(projectName="Test Project", issueType="bug", issuePriority="severe", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+                    reporter=user)
+        issue.save()
+
+        # make sure by default number of votes is 0 for new issues
+        self.assertEqual(issue.votes, 0)
+
+    
     def test_CanCreateIssueOfTypeBug(self):
         # create a test user
         user = User.objects.create_user(username="test_user", email=None, password=None)

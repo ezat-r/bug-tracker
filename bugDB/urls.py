@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^resolve-issue/(?P<id>[0-9]+)/$', resolveIssue, name="resolve_issue"),
     url(r'^reopen-issue/(?P<id>[0-9]+)/$', reOpenIssue, name="reopen_issue"),
     url(r'^close-issue/(?P<id>[0-9]+)/$', closeIssue, name="resolve_issue"),
+    url(r'^up-vote/(?P<id>[0-9]+)/$', upVoteIssue, name="upvote_issue"),
     url(r'^login/$', login, name="login"),
     url(r'^logout/$', logout, name="logout"),
     url(r'^register/$', registration, name="registration"),

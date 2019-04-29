@@ -23,6 +23,11 @@
     display: none;
 }
 
+/* Pagination hide */
+.pag-hide{
+    display: none;
+}
+
 /* Forms message display stylings */
 
 .msg {

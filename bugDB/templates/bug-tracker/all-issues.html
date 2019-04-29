@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static from staticfiles %}
 {% block pageTitle %}All Issues{% endblock%}
 {% block content %}
 {% if issues %}
@@ -16,7 +17,7 @@
     </thead>
     <tbody>
         {% for issue in issues %}
-        <tr>
+        <tr class="bug-item">
             <td><li class="priority {{issue.issuePriority}}"></li></td>
             <td><a href="{% url 'all_issues' %}view-issue/{{issue.id}}/">{{issue.projectName}}-{{issue.id}}</a></td>
             <td><a href="{% url 'all_issues' %}view-issue/{{issue.id}}/">{{issue.title}}</a></td>
@@ -28,9 +29,22 @@
         {% endfor %}
 </tbody>
 </table>
+<!-- Begin Pagination -->
+<div class="row" id="pag-container">
+    <ul class="pagination">
+        <li class="waves-effect" id="pag-left"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="waves-effect pag-item active"><a>1</a></li>
+        <li class="waves-effect" id="pag-right"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+</div>
+<!-- End Pagination -->
 {% else %}
-<div class="row">
+<div class="row center-align">
     <h5>No issues created...</h5>
+    <a href="{% url 'create_issue' %}" class="btn blue"><i class="fa fa-plus"></i> Create</a>
 </div>
 {% endif %}
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/pagination.js' %}"></script>
 {% endblock %}

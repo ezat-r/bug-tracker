@@ -30,6 +30,12 @@ improving efficiency and saving precious time.
 **Project Management:**
 - The Bug Tracker gives users the ability to manage their Projects. At the click of a button, Users can add new Projects or modify existing ones.
 
+**User Restriction**:
+- The Bug Tracker restricts normal users to only raise new bugs and make changes to bugs. Super Users or Developers have the ability to 'Resolve' bugs.
+
+**Pagination**:
+- Pagination is used to organise issues in a more user friendly way. All issues are broken down in 10s, with the most recently updated issues shown first.
+
 ## UX
 
 ### Mockups

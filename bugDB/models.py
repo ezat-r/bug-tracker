@@ -14,6 +14,7 @@ class Issue(models.Model):
     resolution = models.CharField(max_length=30, default="Unresolved")
     status = models.CharField(max_length=30, default="Open")
     reporter = models.ForeignKey(User, default=None)
+    votes = models.IntegerField(default=0)
     
     createdDate = models.DateTimeField(auto_now_add=True)
     updatedDate = models.DateTimeField(auto_now_add=True)
