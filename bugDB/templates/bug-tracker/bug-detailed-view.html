@@ -29,13 +29,16 @@
             {% elif issue.status == "Closed" %}
             <a data-target="modal3" class="btn orange issue-btn modal-trigger"><i class="fa fa-share"></i> Re-open</a>
             {% else %}
-            {% if request.user.is_superuser %}
-            <!-- if user is superuser or developer then show a resolve button -->
-            <a data-target="modal1" class="btn green issue-btn modal-trigger"><i class="fa fa-share-square-o"></i> Resolve</a>
-            {% else %}
-            <form action="""></form>
-            <a data-target="modal4" class="btn green modal-trigger"><i class="fa fa-arrow-up"></i> Up Vote</a>
-            {% endif %}
+                {% if request.user.is_superuser %}
+                    <!-- if user is superuser or developer then show a resolve button -->
+                    <a data-target="modal1" class="btn green issue-btn modal-trigger"><i class="fa fa-share-square-o"></i> Resolve</a>
+                {% else %}
+                    <!-- {% if issue.issueType == "bug" %} -->
+                        <a data-target="modal4" class="btn green modal-trigger"><i class="fa fa-arrow-up"></i> Up Vote</a>
+                    <!-- {% else %} -->
+                        <a class="btn green" href="/make-payment/{{issue.id}}/"><i class="fa fa-arrow-up"></i> Up Vote</a>
+                    <!-- {% endif %} -->
+                {% endif %}
             {% endif %}
             <a href="{% url 'all_issues' %}edit-issue/{{issue.id}}/" class="btn purple issue-btn"><i class="fa fa-pencil"></i> Edit</a>
     </div>

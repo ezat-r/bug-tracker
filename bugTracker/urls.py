@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include("bugDB.urls")),
     url("bug-tracker/", include("bugDB.urls")),
+    url("make-payment/", include("makepayment.urls")),
 ]

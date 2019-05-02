@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block pageTitle %}View Issue{% endblock%}
+{% block content %}
+<div class="container">
+    <h5>Make Payment for {{issue.projectName}}-{{issue.id}}</h5>
+    <p><strong>Issue Title:</strong> {{issue.title}}</p>
+</div>
+<div class="container">
+    <form role="form" method="post" id="payment-form" action="">
+        {% csrf_token %}
+        <legend>Payment Details</legend>
+    
+        <div id="credit-card-errors" style="display: none;">
+            <div id="alert-message block-message error" id="stripe-error-message"></div>
+        </div>
+    
+        <div class="row">
+        </div>
+    
+        <div class="row">
+        </div>
+
+        <div class="row">
+            <input class="btn blue" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+        </div>
+    </form>
+</div>
+{% endblock%}
