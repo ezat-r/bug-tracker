@@ -105,7 +105,7 @@ def registration(request):
 # all issues view handler
 def allIssuesView(request):
 
-    # check if user is already logged in
+    # check if user is logged in
     if request.user.is_authenticated == False:
         # user is not logged in, so redirect to login page
         return redirect(reverse("login"))
@@ -123,6 +123,11 @@ def allIssuesView(request):
 @login_required
 def issueDetailedView(request, id):
     
+    # check if user is logged in
+    if request.user.is_authenticated == False:
+        # user is not logged in, so redirect to login page
+        return redirect(reverse("login"))
+
     # get issue from db by using the id from the request
     issue = get_object_or_404(Issue, pk=id)
     
@@ -215,8 +220,10 @@ def editIssue(request, id):
 
     return render(request, "bug-tracker/edit-issue.html", {"issue": issue})
 
+
 # Upvoting of issues
 def upVoteIssue(request, id):
+
     if request.user.is_authenticated == False:
         # user is not logged in, redirect to login view
         return redirect(reverse("login"))

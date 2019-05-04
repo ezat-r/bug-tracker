@@ -11,8 +11,12 @@
 <div class="row">
     <div class="col s6">
         <p><strong>Issue ID:</strong> {{issue.projectName}}-{{issue.id}}</p>
-        <p><strong>Type:</strong> {{issue.issueType}}</p>
-        <p><strong>Priority:</strong> {{issue.issuePriority}}</p>
+        {% if issue.issueType == "bug" %}
+        <p><strong>Type:</strong> <i id="issue_type_icon" class="fa fa-minus-square red-icon prefix"></i> <span id="issueTypeVal">{{issue.issueType}}</span></p>
+        {% else %}
+        <p><strong>Type:</strong> <i id="issue_type_icon" class="fa prefix fa-plus green-icon"></i> <span id="issueTypeVal">{{issue.issueType}}</span></p>
+        {% endif %}
+        <p><strong>Priority:</strong> <i id="issuePriorityIcon"></i> <span id="issuePriorityVal">{{issue.issuePriority}}</span></p>
         <p><strong>Affects Version:</strong> {{issue.affectsVersion}}</p>
         <p><strong>Found In Build#:</strong> {{issue.foundInBuild}}</p>
     </div>
@@ -22,6 +26,9 @@
         <p><strong>Reported By:</strong> {{issue.reporter}}</p>
         <p><strong>Created Date:</strong> {{issue.createdDate}}</p>
         <p><strong>Last Updated:</strong> {{issue.updatedDate}}</p>
+        {% if request.user.is_superuser %}
+        <p><strong>Up Votes:</strong> {{issue.votes}}</p>
+        {% endif %}
         <p>
             {% if issue.status == "Resolved" %}
             <a data-target="modal3" class="btn orange issue-btn modal-trigger"><i class="fa fa-share"></i> Re-open</a>
@@ -33,11 +40,11 @@
                     <!-- if user is superuser or developer then show a resolve button -->
                     <a data-target="modal1" class="btn green issue-btn modal-trigger"><i class="fa fa-share-square-o"></i> Resolve</a>
                 {% else %}
-                    <!-- {% if issue.issueType == "bug" %} -->
+                    {% if issue.issueType == "bug" %}
                         <a data-target="modal4" class="btn green modal-trigger"><i class="fa fa-arrow-up"></i> Up Vote</a>
-                    <!-- {% else %} -->
+                    {% else %}
                         <a class="btn green" href="/make-payment/{{issue.id}}/"><i class="fa fa-arrow-up"></i> Up Vote</a>
-                    <!-- {% endif %} -->
+                    {% endif %}
                 {% endif %}
             {% endif %}
             <a href="{% url 'all_issues' %}edit-issue/{{issue.id}}/" class="btn purple issue-btn"><i class="fa fa-pencil"></i> Edit</a>

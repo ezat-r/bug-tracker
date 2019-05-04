@@ -1,23 +1,44 @@
 {% extends "base.html" %}
-{% block pageTitle %}View Issue{% endblock%}
+{% block pageTitle %}Make Payment{% endblock%}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block headJS %}
+<!-- Load JQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+        Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock headJS %}
+
 {% block content %}
-<div class="container">
-    <h5>Make Payment for {{issue.projectName}}-{{issue.id}}</h5>
+<div id="make-payment-header" class="container">
+    <h5>{{issue.projectName}}-{{issue.id}}</h5>
     <p><strong>Issue Title:</strong> {{issue.title}}</p>
+    <p><strong>Info:</strong> Make a payment of the amount below, to Up Vote this issue.</p>
+    <p><strong>Amount: </strong><i class="fa fa-gbp"></i>10</p>
 </div>
 <div class="container">
+    <h5 id="payment-form-header">Payment Details:</h5>
     <form role="form" method="post" id="payment-form" action="">
         {% csrf_token %}
-        <legend>Payment Details</legend>
     
         <div id="credit-card-errors" style="display: none;">
             <div id="alert-message block-message error" id="stripe-error-message"></div>
         </div>
     
         <div class="row">
-        </div>
-    
-        <div class="row">
+            <div class="col s6">
+                {{userDetailsForm | as_bootstrap }}
+            </div>
+
+            <div class="col s6">
+                {{cardDetailsForm | as_bootstrap }}
+            </div>
         </div>
 
         <div class="row">

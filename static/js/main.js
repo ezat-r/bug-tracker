@@ -80,6 +80,44 @@ $(function(){
 
         // Materialize CSS - Form Select tag initialisation
         $('select').formSelect();
+
+        // correct the issueType text value
+        if($("#issueTypeVal").text() == "bug"){
+            $("#issueTypeVal").text("Bug");
+        }else{
+            $("#issueTypeVal").text("Feature Request")
+        }
+
+        // correct the issuePriority text value & add the correct preset icon
+        if($("#issuePriorityVal").text() == "triage_required"){
+
+            $("#issuePriorityVal").text("Triage Required");
+            $("#issuePriorityIcon").addClass("fa fa-minus-circle red-icon prefix");
+
+        }else if($("#issuePriorityVal").text() == "severe"){
+            
+            $("#issuePriorityVal").text("Severe");
+            $("#issuePriorityIcon").addClass("fa fa-ban red-icon prefix");
+
+        }else if($("#issuePriorityVal").text() == "must_fix"){
+            
+            $("#issuePriorityVal").text("Must Fix");
+            $("#issuePriorityIcon").addClass("fa fa-arrow-up red-icon prefix");
+
+        }else if($("#issuePriorityVal").text() == "desirable"){
+            
+            $("#issuePriorityVal").text("Desirable");
+            $("#issuePriorityIcon").addClass("fa fa-angle-double-up red-icon prefix");
+
+        }else if($("#issuePriorityVal").text() == "unlikely"){
+            
+            $("#issuePriorityVal").text("Unlikely");
+            $("#issuePriorityIcon").addClass("fa fa-angle-double-down green-icon prefix");
+        }
+
+    } else if(document.title == "Make Payment"){
+        // Materialize CSS - Form Select tag initialisation
+        $('select').formSelect();
     }
 
     statusMessageHandler();
