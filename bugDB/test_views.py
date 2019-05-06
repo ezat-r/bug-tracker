@@ -13,8 +13,8 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 302)
     
     def test_LoginPageLoadsFine(self):
-        page = self.client.get("/bug-tracker/login/")
+        page = self.client.get("/accounts/login/")
 
         self.assertEqual(page.status_code, 200)
-        self.assertTemplateUsed(page, "bug-tracker/login.html")
+        self.assertTemplateUsed(page, "accounts/login.html")
     

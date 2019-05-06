@@ -2,7 +2,7 @@
 {% block pageTitle %}Make Payment{% endblock%}
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
-{% block headJS %}
+{% block headContent %}
 <!-- Load JQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous"></script>
@@ -13,7 +13,7 @@ crossorigin="anonymous"></script>
     //]]>
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
-{% endblock headJS %}
+{% endblock headContent %}
 
 {% block content %}
 <div id="make-payment-header" class="container">

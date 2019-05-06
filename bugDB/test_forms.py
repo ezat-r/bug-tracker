@@ -8,7 +8,7 @@ class TestToDoItemForm(TestCase):
 
     def test_CanCreateAnIssueWithAllIssueFieldsFilledIn(self):
         # all fields are filled in, so it should pass
-        testDict = {"projectName": "Test", "issueType": "bug", "issuePriority": "severe", "title": "Test title", "affectsVersion": "1.0.0", 
+        testDict = {"issueProjectName": "Test", "issueType": "bug", "title": "Test title", "affectsVersion": "1.0.0", 
         "foundInBuild": "123", "description": "Test description", "status": "Open", "resolution": "Unresolved"}
 
         form = IssueForm(testDict)
@@ -17,7 +17,7 @@ class TestToDoItemForm(TestCase):
     
     def test_MakeSureErrorIsThrownForMissingIssueFields(self):
         # 'title' field is missing, so it should fail
-        testDict = {"projectName": "Test", "issueType": "bug", "issuePriority": "severe", "title": "", "affectsVersion": "1.0.0", 
+        testDict = {"issueProjectName": "Test", "issueType": "bug", "title": "", "affectsVersion": "1.0.0", 
         "foundInBuild": "123", "description": "Test description", "status": "Open", "resolution": "Unresolved"}
 
         form = IssueForm(testDict)
@@ -37,7 +37,7 @@ class TestToDoItemForm(TestCase):
     
     def test_MakeSureErrorIsThrownForMissingCommentField(self):
         # 'title' field is missing, so it should fail
-        testDict = {"projectName": "Test", "issueType": "bug", "issuePriority": "severe", "title": "", "affectsVersion": "1.0.0", 
+        testDict = {"issueProjectName": "Test", "issueType": "bug", "title": "", "affectsVersion": "1.0.0", 
         "foundInBuild": "123", "description": "Test description", "status": "Open", "resolution": "Unresolved"}
 
         form = IssueCommentsForm(testDict)

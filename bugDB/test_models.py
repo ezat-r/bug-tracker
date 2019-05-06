@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .models import Issue, IssueComments
+from .models import Issue, IssueComments, IssueProject
 
 
 class TestItemModel(TestCase):
@@ -11,7 +11,7 @@ class TestItemModel(TestCase):
         # create a test user
         user = User.objects.create_user(username="test_user", email=None, password=None)
 
-        issue = Issue(projectName="Test Project", issueType="bug", issuePriority="severe", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+        issue = Issue(issueProjectName="Test Project", issueType="bug", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
                     reporter=user)
         issue.save()
 
@@ -23,19 +23,30 @@ class TestItemModel(TestCase):
         # create a test user
         user = User.objects.create_user(username="test_user", email=None, password=None)
 
-        issue = Issue(projectName="Test Project", issueType="bug", issuePriority="severe", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+        issue = Issue(issueProjectName="Test Project", issueType="bug", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
                     reporter=user)
         issue.save()
 
         # make sure by default number of votes is 0 for new issues
         self.assertEqual(issue.votes, 0)
+    
+    def test_IssueStrWorksCorrectly(self):
+        # create a test user
+        user = User.objects.create_user(username="test_user", email=None, password=None)
+
+        issue = Issue(issueProjectName="Test Project", issueType="bug", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+                    reporter=user)
+        issue.save()
+
+        # make sure by default number of votes is 0 for new issues
+        self.assertEqual(issue.__str__(), "{}-{}".format(issue.issueProjectName, issue.id))
 
     
     def test_CanCreateIssueOfTypeBug(self):
         # create a test user
         user = User.objects.create_user(username="test_user", email=None, password=None)
 
-        issue = Issue(projectName="Test Project", issueType="bug", issuePriority="severe", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+        issue = Issue(issueProjectName="Test Project", issueType="bug", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
                     reporter=user)
         issue.save()
 
@@ -45,7 +56,7 @@ class TestItemModel(TestCase):
         # create a test user
         user = User.objects.create_user(username="test_user", email=None, password=None)
 
-        issue = Issue(projectName="Test Project", issueType="feature_request", issuePriority="severe", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+        issue = Issue(issueProjectName="Test Project", issueType="feature_request", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
                     reporter=user)
         issue.save()
 
@@ -58,7 +69,7 @@ class TestItemModel(TestCase):
         user2 = User.objects.create_user(username="test_user2", email=None, password=None)
 
         # create an issue using user1
-        issue = Issue(projectName="Test Project", issueType="feature_request", issuePriority="severe", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+        issue = Issue(issueProjectName="Test Project", issueType="feature_request", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
                     reporter=user1)
         issue.save()
         self.assertEqual(issue.reporter, user1)
@@ -71,11 +82,11 @@ class TestItemModel(TestCase):
         user = User.objects.create_user(username="test_user", email=None, password=None)
 
         # create 2 issues
-        issue1 = Issue(projectName="Test Project", issueType="feature_request", issuePriority="severe", title="Test title 1", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+        issue1 = Issue(issueProjectName="Test Project", issueType="feature_request", title="Test title 1", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
                     reporter=user)
         issue1.save()
 
-        issue2 = Issue(projectName="Test Project", issueType="bug", issuePriority="severe", title="Test title 2", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+        issue2 = Issue(issueProjectName="Test Project", issueType="bug", title="Test title 2", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
                     reporter=user)
         issue2.save()
 
@@ -92,7 +103,7 @@ class TestItemModel(TestCase):
         user2 = User.objects.create_user(username="test_user2", email=None, password=None)
 
         # create an issue using user1
-        issue = Issue(projectName="Test Project", issueType="feature_request", issuePriority="severe", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
+        issue = Issue(issueProjectName="Test Project", issueType="feature_request", title="Test title", affectsVersion="1.0.0", foundInBuild="1233", description="Test decription",
                     reporter=user1)
 
         # create a comment for issue, using user1 as the 'user'
@@ -100,3 +111,23 @@ class TestItemModel(TestCase):
         
         self.assertNotEqual(comment.user, user2)
         self.assertEqual(comment.user, user1)
+    
+
+    # Testing IssueProject Model
+
+    def test_CanCreateNewProject(self):
+        # create a test project
+        newProjectName = "Test"
+
+        newProject = IssueProject(projectName=newProjectName)
+
+        self.assertEqual(newProject.projectName, newProjectName)
+
+
+    def test_ProjectStrWorksCorrectly(self):
+        # create a test project
+        newProjectName = "Test"
+
+        newProject = IssueProject(projectName=newProjectName)
+        
+        self.assertEqual(newProject.__str__(), newProjectName)
