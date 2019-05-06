@@ -13,10 +13,11 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">apps</i>
-                <select id="projectName" name="projectName">
-                    <option selected>Project A</option>
-                    <option>Project B</option>
-                    <option>Project C</option>
+                <select id="issueProjectName" name="issueProjectName">
+                    <option disabled selected>Choose A Project:</option>
+                    {% for project in projects %}
+                    <option value="{{project.projectName}}">{{project.projectName}}</option>
+                    {% endfor %}
                 </select>
                 <label>Project</label>
             </div>
@@ -34,21 +35,6 @@
             </div>
         </div>
         <!-- End Issue Type Select Element -->
-        <!-- Begin Issue Priority Select Element -->
-        <div class="row">
-            <div class="input-field col s12">
-                <i id="issue_priority_icon" class="fa fa-minus-circle red-icon prefix"></i>
-                <select id="issuePriority" name="issuePriority">
-                    <option value="triage_required" selected>Triage Required</option>
-                    <option value="severe">Severe</option>
-                    <option value="must_fix">Must Fix</option>
-                    <option value="desirable">Desirable To Fix</option>
-                    <option value="unlikely">Unlikely To Fix</option>
-                </select>
-                <label>Priority</label>
-            </div>
-        </div>
-        <!-- End Issue Priority Select Element -->
         <!-- Begin Issue Title Element -->
         <div class="row">
             <div class="input-field col s12">

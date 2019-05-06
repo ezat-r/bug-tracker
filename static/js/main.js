@@ -21,27 +21,17 @@ $(function(){
             issueTypeIconHandler("#issueType");
         });
 
-        // select element event handler for the 'issue_priority'
-        $("#issuePriority").on("change", function(){
-            // call iconCorrector function to correctly set priority icon correctly
-            issuePriorityIconHandler("#issuePriority");
-
-        });
-
         if(document.title == "Edit Issue"){
+            // pre-select the correct 'projectName' value
             var projectVal = $("#projectName").data("value");
             $("#projectName").val(projectVal);
             $("#projectName").click().click();
 
+            // pre-select the correct 'issueType' value
             var issueTypeVal = $("#issueType").data("value");
             $("#issueType").val(issueTypeVal);
             $("#issueType").click().click();
             issueTypeIconHandler("#issueType");
-
-            var priorityVal = $("#issuePriority").data("value");
-            $("#issuePriority").val(priorityVal);
-            $(".select-dropdown.dropdown-trigger").click().click();
-            issuePriorityIconHandler("#issuePriority");
 
         }
 
@@ -49,31 +39,6 @@ $(function(){
         $("#id_username").addClass("validate");
         $("#id_password").addClass("validate");
         
-    }else if(document.title == "All Issues"){
-        // show priority icons instead of the actual values.
-        // Icons will be displayed in the table.
-
-        liVals = $(".priority");
-
-        for(var i=0; i< liVals.length; i++){
-            val = liVals[i]
-            if($(val).hasClass("triage_required")){
-                $(val).addClass("fa fa-minus-circle red-icon prefix");
-
-            }else if($(val).hasClass("severe")){
-                $(val).addClass("fa fa-ban red-icon prefix");
-
-            }else if($(val).hasClass("must_fix")){
-                $(val).addClass("fa fa-arrow-up red-icon prefix");
-
-            }else if($(val).hasClass("desirable")){
-                $(val).addClass("fa fa-angle-double-up red-icon prefix");
-
-            }else if($(val).hasClass("unlikely")){
-
-                $(val).addClass("fa fa-angle-double-down green-icon prefix");
-            }
-        }
     }else if(document.title == "View Issue"){
         // Initialize all modals
         $('.modal').modal();
@@ -86,33 +51,6 @@ $(function(){
             $("#issueTypeVal").text("Bug");
         }else{
             $("#issueTypeVal").text("Feature Request")
-        }
-
-        // correct the issuePriority text value & add the correct preset icon
-        if($("#issuePriorityVal").text() == "triage_required"){
-
-            $("#issuePriorityVal").text("Triage Required");
-            $("#issuePriorityIcon").addClass("fa fa-minus-circle red-icon prefix");
-
-        }else if($("#issuePriorityVal").text() == "severe"){
-            
-            $("#issuePriorityVal").text("Severe");
-            $("#issuePriorityIcon").addClass("fa fa-ban red-icon prefix");
-
-        }else if($("#issuePriorityVal").text() == "must_fix"){
-            
-            $("#issuePriorityVal").text("Must Fix");
-            $("#issuePriorityIcon").addClass("fa fa-arrow-up red-icon prefix");
-
-        }else if($("#issuePriorityVal").text() == "desirable"){
-            
-            $("#issuePriorityVal").text("Desirable");
-            $("#issuePriorityIcon").addClass("fa fa-angle-double-up red-icon prefix");
-
-        }else if($("#issuePriorityVal").text() == "unlikely"){
-            
-            $("#issuePriorityVal").text("Unlikely");
-            $("#issuePriorityIcon").addClass("fa fa-angle-double-down green-icon prefix");
         }
 
     } else if(document.title == "Make Payment"){
@@ -149,33 +87,5 @@ $(function(){
             $("#issue_type_icon").removeClass("fa-minus-square").removeClass("red-icon");
             $("#issue_type_icon").addClass("fa-plus").addClass("green-icon");
         }
-    }
-
-    // change prefix icon according to selected option for the issuePriority select element
-    function issuePriorityIconHandler(id){
-        var value = $(id).val();
-
-        $("#issue_priority_icon").removeClass();
-
-        if(value == "triage_required"){
-            $("#issue_priority_icon").addClass("fa fa-minus-circle red-icon prefix");
-
-        }else if(value == "severe"){
-            $("#issue_priority_icon").addClass("fa fa-ban red-icon prefix");
-
-        }else if(value == "must_fix"){
-            $("#issue_priority_icon").addClass("fa fa-arrow-up red-icon prefix");
-
-        }else if(value == "desirable"){
-            $("#issue_priority_icon").addClass("fa fa-angle-double-up red-icon prefix");
-            
-        }else if(value == "unlikely"){
-            $("#issue_priority_icon").addClass("fa fa-angle-double-down green-icon prefix");
-        }
-    }
-
-    function selectElementCorrector(iconId, selectId, template){
-        $(selectId).remove();
-
     }
 });

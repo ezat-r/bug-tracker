@@ -6,25 +6,23 @@
 <table>
     <thead>
         <tr>
-            <th>P</th>
             <th>Id</th>
             <th>Summary</th>
-            <th>Reporter</th>
+            <th class="hide-on-med-and-down">Reporter</th>
             <th>Status</th>
-            <th>Updated</th>
-            <th>Affects Version</th>
+            <th class="hide-on-med-and-down">Updated</th>
+            <th class="hide-on-med-and-down">Affects Version</th>
         </tr>
     </thead>
     <tbody>
         {% for issue in issues %}
         <tr class="bug-item">
-            <td><li class="priority {{issue.issuePriority}}"></li></td>
-            <td><a href="{% url 'all_issues' %}view-issue/{{issue.id}}/">{{issue.projectName}}-{{issue.id}}</a></td>
+            <td><a href="{% url 'all_issues' %}view-issue/{{issue.id}}/">{{issue.issueProjectName}}-{{issue.id}}</a></td>
             <td><a href="{% url 'all_issues' %}view-issue/{{issue.id}}/">{{issue.title}}</a></td>
-            <td>{{issue.reporter}}</td>
+            <td class="hide-on-med-and-down">{{issue.reporter}}</td>
             <td>{{issue.status}}</td>
-            <td>{{issue.updatedDate}}</td>
-            <td>{{issue.affectsVersion}}</td>
+            <td class="hide-on-med-and-down">{{issue.updatedDate}}</td>
+            <td class="hide-on-med-and-down">{{issue.affectsVersion}}</td>
         </tr>
         {% endfor %}
 </tbody>

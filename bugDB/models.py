@@ -1,12 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+# Model for issueProjects
+class IssueProject(models.Model):
+    projectName = models.CharField(max_length=150)
+
+    def __str__(self):
+        return "{}".format(self.projectName)      
+
 # Model for issues
 class Issue(models.Model):
     
-    projectName = models.CharField(max_length=30)
+    issueProjectName = models.CharField(max_length=150)
     issueType = models.CharField(max_length=30)
-    issuePriority = models.CharField(max_length=50)
     title = models.CharField(max_length=150)
     affectsVersion = models.CharField(max_length=30)
     foundInBuild = models.CharField(max_length=30)
@@ -20,7 +27,8 @@ class Issue(models.Model):
     updatedDate = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "{}-{}".format(self.projectName, self.id)
+        return "{}-{}".format(self.issueProjectName, self.id)
+
 
 # Model for issue comments - 1 - many relationship i.e. one issue can have multiple comments
 class IssueComments(models.Model):

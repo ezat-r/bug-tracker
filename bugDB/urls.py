@@ -1,6 +1,5 @@
 from django.conf.urls import url, include
 from .views import *
-from . import password_reset_urls
 
 # URLs specific to the 'bugDB' app
 
@@ -13,8 +12,4 @@ urlpatterns = [
     url(r'^reopen-issue/(?P<id>[0-9]+)/$', reOpenIssue, name="reopen_issue"),
     url(r'^close-issue/(?P<id>[0-9]+)/$', closeIssue, name="resolve_issue"),
     url(r'^up-vote/(?P<id>[0-9]+)/$', upVoteIssue, name="upvote_issue"),
-    url(r'^login/$', login, name="login"),
-    url(r'^logout/$', logout, name="logout"),
-    url(r'^register/$', registration, name="registration"),
-    url(r'^password-reset/', include(password_reset_urls)),
 ]
