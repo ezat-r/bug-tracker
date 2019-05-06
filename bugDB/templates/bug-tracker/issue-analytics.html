@@ -1,5 +1,25 @@
 {% extends "base.html" %}
-{% block pageTitle %}View Issue{% endblock%}
-{% block content %}
+{% load static from staticfiles %}
+{% block pageTitle %}Issue Analytics{% endblock%}
+{% block headContent %}
+<!-- Load Charts CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+{% endblock %}
 
+{% block content %}
+<div class="row">
+    <canvas id="myChart"></canvas>
+</div>
+<ul class="hide">
+    {% for issue in mostIssues %}
+    <li class="chart-proj-item" data-project="{{issue.issueProjectName}}" data-count="{{issue.count}}"></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block js%}
+<!-- Load ChartsJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<!-- Our JS -->
+<script src="{% static 'js/chart.js' %}"></script>
 {% endblock %}

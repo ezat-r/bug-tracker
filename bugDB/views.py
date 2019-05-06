@@ -7,6 +7,37 @@ from .forms import IssueForm, IssueCommentsForm
 from datetime import datetime
 
 
+### Issue Analytics view
+
+# view used to render an analytics view showing how many issues have been raised against all Projects
+def analytics(request):
+
+    issues = Issue.objects.order_by("-votes")
+    projects = IssueProject.objects.all()
+
+    mostIssueProjs = []
+
+    # loop through projects
+    for project in projects:
+        num = 0
+
+        # loop through issues
+        for issue in issues:
+
+            # issue current issue project matches, then increment num by 1
+            if issue.issueProjectName == project.projectName:
+                num += 1
+        
+        if num > 0:
+            # if num is not 0, then append it to the 'mostIssueProjs' list element
+            mostIssueProjs.append({"issueProjectName": project.projectName, "count": num})
+
+    # variable used to send data to view, where it is rendered and made into javascript
+    viewObjs = {"mostIssues": mostIssueProjs}
+
+    return render(request, "bug-tracker/issue-analytics.html", viewObjs)
+
+
 ### Issue view handling
 
 # all issues view handler

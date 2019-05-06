@@ -5,6 +5,7 @@ from .views import *
 
 urlpatterns = [
     url(r'^$', allIssuesView, name="all_issues"),
+    url(r'^analytics/$', analytics, name="analytics"),
     url(r'^create/$', createTicket, name="create_issue"),
     url(r'^view-issue/(?P<id>[0-9]+)/$', issueDetailedView, name="detailed_view"),
     url(r'^edit-issue/(?P<id>[0-9]+)/$', editIssue, name="edit_issue"),

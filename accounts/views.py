@@ -9,13 +9,10 @@ from .forms import UserLoginForm, UserRegistrationForm
 # Login handling
 def login(request):
 
-    # clear any messages
-    #clearMessages(request)
-
     # check if user is already logged in
     if request.user.is_authenticated:
         # user is already logged in, so redirect to home page
-        return redirect(reverse("all_issues"))
+        return redirect(reverse("analytics"))
 
     # check if a login has been tried
     if request.method == "POST":
@@ -32,7 +29,7 @@ def login(request):
                 # user is valid so login user and send a success message
                 auth.login(user=user, request=request)
 
-                return redirect(reverse("all_issues"))
+                return redirect(reverse("analytics"))
             else:
                 # user either doesn't exist or details incorrect so send error message
                 messages.error(request, "Your username or password is incorrect!")
@@ -48,9 +45,6 @@ def login(request):
 @login_required
 def logout(request):
 
-    # clear any messages
-    #clearMessages(request)
-
     # log the user out
     auth.logout(request)
     messages.success(request, "You have successfully logged out!")
@@ -60,11 +54,10 @@ def logout(request):
 
 # new user registration handling
 def registration(request):
-    #clearMessages(request)
 
     if request.user.is_authenticated:
         # user is logged in already, redirect to index view
-        return redirect(reverse("all_issues"))
+        return redirect(reverse("analytics"))
 
     if request.method == "POST":
         # instantiate a form using POST data
@@ -84,7 +77,7 @@ def registration(request):
                 messages.success(request, "You have successfully registered!")
 
                 # re-direct to 'all_issues' page
-                return redirect(reverse("all_issues"))
+                return redirect(reverse("analytics"))
             else:
                 # error, so display a error message
                 messages.error(request, "Unable to register your account!")
