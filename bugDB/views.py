@@ -63,11 +63,6 @@ def allIssuesView(request):
 # individual issue detailed view handler
 @login_required
 def issueDetailedView(request, id):
-    
-    # check if user is logged in
-    if request.user.is_authenticated == False:
-        # user is not logged in, so redirect to login page
-        return redirect(reverse("login"))
 
     # get issue from db by using the id from the request
     issue = get_object_or_404(Issue, pk=id)
@@ -166,11 +161,8 @@ def editIssue(request, id):
 
 
 # Upvoting of issues
+@login_required
 def upVoteIssue(request, id):
-
-    if request.user.is_authenticated == False:
-        # user is not logged in, redirect to login view
-        return redirect(reverse("login"))
     
     issue = get_object_or_404(Issue, pk=id)
 
@@ -195,11 +187,8 @@ def upVoteIssue(request, id):
 
 
 # Resolving an issue
+@login_required
 def resolveIssue(request, id):
-
-    if request.user.is_authenticated == False:
-        # user is not logged in, redirect to login view
-        return redirect(reverse("login"))
 
     issue = get_object_or_404(Issue, pk=id)
 
@@ -230,10 +219,8 @@ def resolveIssue(request, id):
 
 
 # Closing an issue
+@login_required
 def closeIssue(request, id):
-    if request.user.is_authenticated == False:
-        # user is not logged in, redirect to login view
-        return redirect(reverse("login"))
 
     issue = get_object_or_404(Issue, pk=id)
 
@@ -264,10 +251,8 @@ def closeIssue(request, id):
 
 
 # Re-opening of an issue
+@login_required
 def reOpenIssue(request, id):
-    if request.user.is_authenticated == False:
-        # user is not logged in, redirect to login view
-        return redirect(reverse("login"))
 
     issue = get_object_or_404(Issue, pk=id)
 
