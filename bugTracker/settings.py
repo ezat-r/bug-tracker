@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "accounts",
     "projectManager",
     "bugDB",
+    "search",
     "makepayment",
 ]
 

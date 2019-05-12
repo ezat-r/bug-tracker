@@ -1,20 +1,10 @@
 {% extends "base.html" %}
 {% load static from staticfiles %}
-{% block pageTitle %}All Issues{% endblock%}
+{% block pageTitle %}Search Results{% endblock%}
 {% block content %}
 {% if issues %}
-<div class="row" id="search-form">
-    <form action="{% url 'search' %}" method="get">
-        <div class="input-field col s12">
-            <input type="text" name="query" placeholder="Enter Search Query..." required>
-            <label>Search Query</label>
-        </div>
-        <div class="row center-align">
-            <button id="search_btn" class="btn waves-effect waves-light blue center-align" type="submit">Search
-                <i class="material-icons right">search</i>
-            </button>
-        </div>
-    </form>
+<div class="row center-align">
+    <h5>Search Results for <i>{{query}}</i>:</h5>
 </div>
 <table>
     <thead>
@@ -45,10 +35,15 @@
     </ul>
 </div>
 <!-- End Pagination -->
+<!-- Begin go home button -->
+<div class="row center-align" id="go-home-btn">
+    <a href="{% url 'all_issues' %}" class="btn blue"><i class="fa fa-home"></i> Back Home</a>
+</div>
+<!-- End go home button -->
 {% else %}
 <div class="row center-align">
-    <h5>No issues created...</h5>
-    <a href="{% url 'create_issue' %}" class="btn blue"><i class="fa fa-plus"></i> Create</a>
+    <h5>No issues match your search query...</h5>
+    <a href="{% url 'all_issues' %}" class="btn blue"><i class="fa fa-home"></i> Back Home</a>
 </div>
 {% endif %}
 {% endblock %}

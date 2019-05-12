@@ -63,7 +63,6 @@ def enterPaymentInfo(request, id):
 
                 return redirect("detailed_view", id=id)
         else:
-            print(cardDetailsForm.errors)
 
             # Display error message and re-direct to issue page
             messages.error(request, "We were unable to take a payment with that card!")

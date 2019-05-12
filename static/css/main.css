@@ -13,6 +13,16 @@
     margin-top: 2px;
 }
 
+#search-form{
+    margin-top: 10px;
+}
+
+/* Search results page */
+
+#go-home-btn{
+    margin-top: 25px;
+}
+
 /* Issue Type Icons */
 
 .red-icon{

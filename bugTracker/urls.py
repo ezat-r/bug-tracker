@@ -23,4 +23,5 @@ urlpatterns = [
     url("bug-tracker/", include("bugDB.urls")),
     url("make-payment/", include("makepayment.urls")),
     url("manage-projects/", include("projectManager.urls")),
+    url("search/", include("search.urls")),
 ]
