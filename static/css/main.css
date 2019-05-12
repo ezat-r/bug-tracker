@@ -49,6 +49,13 @@
     display: none;
 }
 
+/* View Projects page */
+
+.proj-collapsible{
+    margin-top: 40px !important;
+    margin-bottom: 25px !important;
+}
+
 /* Forms message display stylings */
 
 .msg {

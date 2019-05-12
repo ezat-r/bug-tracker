@@ -34,6 +34,9 @@
                     <li><a href="{% url 'all_issues' %}">Home</a></li>
                     <li><a href="{% url 'analytics' %}">Analytics</a></li>
                     <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                        {% if user.is_superuser %}
+                        <li><a href="{% url 'view_projects' %}">Manage Projects</a></li>
+                        {% endif %}
                     {% else %}
                     <li><a href="{% url 'login'%}">Sign In</a></li>
                     {% endif %}

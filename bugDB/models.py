@@ -2,17 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Model for issueProjects
-class IssueProject(models.Model):
-    projectName = models.CharField(max_length=150)
-
-    def __str__(self):
-        return "{}".format(self.projectName)      
-
 # Model for issues
 class Issue(models.Model):
     
-    issueProjectName = models.CharField(max_length=150)
+    issueProjectName = models.CharField(max_length=30)
     issueType = models.CharField(max_length=30)
     title = models.CharField(max_length=150)
     affectsVersion = models.CharField(max_length=30)

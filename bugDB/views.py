@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Issue, IssueComments, IssueProject
+from .models import Issue, IssueComments
+from projectManager.models import IssueProject
 from .forms import IssueForm, IssueCommentsForm
 from datetime import datetime
 
@@ -109,7 +110,7 @@ def issueDetailedView(request, id):
         
         else:
             # form is not valid so send an error message and reload current page
-            messages.error(request, "Comment added successfully!")
+            messages.error(request, "Error: Unable to add comment!")
 
             return redirect("detailed_view", id=id)
 

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block pageTitle %}Add Project{% endblock%}
+{% block content%}
+<div class="row">
+    <h3 class="center-align">Add Project</h3>
+</div>
+<div class="row">
+    <form action="{% url 'add_project' %}" method="POST" class="col s12">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">apps</i>
+                <input id="id_projectName" name="projectName" type="text" required>
+                <label for="icon_prefix">Project Name</label>
+            </div>
+        </div>
+        <div class="row center-align">
+            <button class="btn waves-effect waves-light purple" type="submit">Add Project</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

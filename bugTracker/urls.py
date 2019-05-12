@@ -22,4 +22,5 @@ urlpatterns = [
     url("accounts/", include("accounts.urls")),
     url("bug-tracker/", include("bugDB.urls")),
     url("make-payment/", include("makepayment.urls")),
+    url("manage-projects/", include("projectManager.urls")),
 ]

@@ -1,9 +1,7 @@
 from django.contrib import admin
-from .models import Issue, IssueComments, IssueProject
+from .models import Issue, IssueComments
 
 # Register your models here.
-
-admin.site.register(IssueProject)
 
 admin.site.register(Issue)
 

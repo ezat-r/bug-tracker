@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block pageTitle %}Edit Project{% endblock%}
+{% block content%}
+<div class="row">
+    <h3 class="center-align">Edit Project</h3>
+    <!-- Begin Edit Project Form -->
+    <div class="row">
+        <form action="{% url 'edit_project' project.id %}" method="POST" class="col s12">
+            {% csrf_token %}
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">poll</i>
+                    {{form.projectName}}
+                    <!-- <input id="id_projectName" name="projectName" type="text" value="{{project.projectName}}" required> -->
+                    <label for="icon_prefix">Project Name</label>
+                </div>
+            </div>
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light purple" type="submit">Update Project</button>
+            </div>
+            {{ form.subject.errors }}
+        </form>
+    </div>
+    <!-- End Edit Project Form -->
+</div>
+{% endblock %}

@@ -26,7 +26,7 @@ class TestToDoItemForm(TestCase):
         self.assertEqual(form.errors["title"], [u'This field is required.'])
     
 
-    # Issue Coments Form Testing
+    # Issue Comments Form Testing
 
     def test_CanCreateACommentWithCommentFieldFilledIn(self):
         testDict = {"comment": "Test comment"}
