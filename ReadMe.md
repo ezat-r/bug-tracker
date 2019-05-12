@@ -184,7 +184,14 @@ Forms testing can be found in the *test_forms.py* file for each of the apps - wh
 
 ### Coverage
 
-Coverage was a tool used to help in getting each of the app closer to the ideal 100% Test Coverage goal. After a test was written, *Coverage* was used to determine and keep track of the Test coverage. Tests were then written or removed to try and achieve the 100% 
+Coverage was a tool used to help in getting each of the app closer to the ideal 100% Test Coverage goal. After a test was written, *Coverage* was used to determine and keep track of the Test coverage. Tests were then written or removed to try and achieve the 100% coverage goal.
+
+#### Steps Used To Generate A Coverage Report
+
+1. Install Coverage by running the following command in a terminal window: **pip3 install coverage**
+2. Then, CD into your django project directory and run the following command: **coverage run --source=app_name .\manage.py test** -> replace the 'app_name' with your appropriate one.
+3. Once that is done, then run the following command: **coverage report**
+4. A report of your Test coverage % will be shown for your django app.
 
 ### Screen Size & Different Browsers
 
