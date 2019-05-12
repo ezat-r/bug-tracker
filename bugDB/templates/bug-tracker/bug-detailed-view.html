@@ -46,7 +46,11 @@
                     {% endif %}
                 {% endif %}
             {% endif %}
+            
+            {% if issue.reporter == user %}
+            <!-- Only show the 'Edit' button if the logged in user is the reporter of the current issue -->
             <a href="{% url 'all_issues' %}edit-issue/{{issue.id}}/" class="btn purple issue-btn"><i class="fa fa-pencil"></i> Edit</a>
+            {% endif %}
     </div>
 </div>
 <!-- End Bug Information -->

@@ -117,7 +117,7 @@ def issueDetailedView(request, id):
         # no attempt has been made to add a new comment, so send a blank form to view
         commentForm = IssueCommentsForm()
 
-    issueEntry = {"issue": issue, "comments": issueComments, "commentsForm": commentForm}
+    issueEntry = {"issue": issue, "comments": issueComments, "commentsForm": commentForm, "user": request.user}
 
 
     return render(request, "bug-tracker/bug-detailed-view.html", issueEntry)
