@@ -9,6 +9,10 @@
     padding: 0 0.5em;
 }
 
+.issue-title-header{
+    margin-top: 2px;
+}
+
 /* Issue Type Icons */
 
 .red-icon{

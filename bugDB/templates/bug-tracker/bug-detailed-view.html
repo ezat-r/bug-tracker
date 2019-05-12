@@ -62,8 +62,9 @@
     {% if comments %}
     <ul class="collapsible">
         <li>
-            <div class="collapsible-header">
-                <p><strong>View Comments</strong></p>
+            <div class="collapsible-header issue-title-header">
+                <i class="material-icons">expand_more</i>
+                <strong>View Comments</strong>
             </div>
             <div class="collapsible-body">
                 {% for comment in comments %}
