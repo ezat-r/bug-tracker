@@ -1,4 +1,14 @@
 
+/* All Issues page */
+
+.btn-small{
+    height: 24px;
+    width: 60px;
+    line-height: 24px;
+    margin: 5px 5px;
+    padding: 0 0.5em;
+}
+
 /* Issue Type Icons */
 
 .red-icon{
@@ -9,6 +19,12 @@
 .green-icon{
     color: green;
     font-size: 18px;
+}
+
+/* Detailed Issue View Page */
+
+.issue-title-detailed{
+    word-break: break-all;
 }
 
 /* Add New Issue Page & Edit Issue Page */
@@ -24,6 +40,7 @@
 }
 
 /* Pagination hide */
+
 .pag-hide{
     display: none;
 }
@@ -131,6 +148,15 @@ footer{
 
 /* Media Queries */
 
+@media screen and (max-width: 986px){
+    /* Stylings for Screens smaller than 1000px */
+
+    .footer-custom-align{
+        text-align: center !important;
+    }
+    
+}
+
 @media screen and (max-width: 600px){
     /* Reduce brand font-size for screens smaller than 600px */
     nav .brand-logo{
@@ -148,4 +174,5 @@ footer{
     .msg{
         margin-left: 0;
     }
+    
 }
