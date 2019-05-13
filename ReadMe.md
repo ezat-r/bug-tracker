@@ -17,14 +17,34 @@ The project was created to solve the below questions:
 **Raising Bugs & Feature Requests:**
 - Users can login and create Bugs or Feature Requests against their projects, ensuring quality and making project management easier.
 
+- **Bugs**:
+    - Any issues customers find with a software product are known as *Bugs*. Customers can raise bugs for software using the bug tracker.
+    - Unlike *Feature Requests*, bugs are fixed for *FREE* and are prioritised by a **Up Voting** mechanism; this is where users go in and up vote issues, to get them noticed by
+    Developers and get them fixed sooner.
+
+- **Feature Requests**:
+    - Users can request new features for a certain product. 
+    - Feature Requests can be implemented, however, it requires that the customers pay to have them implemented. Feature Requests, like Bugs, use the **Up Voting** mechanism to help prioritise them. However, the difference is that in order to Up Vote a Feature, customers will need to pay a Fee first.
+
 **A Logical Work Flow:**
 - The Bug Tracker follows a clear cut work flow in terms of how things work; it prevents users from making unintended action i.e. Closing a bug or feature request which
 is yet to be resolved etc. 
-- The Bug Tracker makes it so a Bug or Feature Request has to be Resolved before you can Close it.
-- Example flow is as follows: *Issue Created -> Issue Resolved -> Issue Closed*
 
-**Filtering of Issues:**
-- The Bug Tracker has functionality in place which allows users to *filter Bugs by Project*, making it easier for Users to focus their attention to the correct area, hence,
+A break down of how this works is as follows:
+
+- **1. Reporting of a Feature Request or Bug**:
+    - So a user would need to login and then add a new Bug or Feature Request.
+    - Over time users would login and if they've experience the same issue, then they will *Up Vote* the issue.
+- **2. Developer Starts Work**:
+    - Once a reported issue has enough *Votes*, a Developer would go in and make it his priority to have the Feature or Bug fixed.
+    - Once a fix has been implemented for the Feature or Bug, then the Developer would click onto the issue's *View* button and then click the *Resolve* button.
+- **3. Verification Of Fix**:
+    - A software tester or another Developer would go in and verify if the issue has been fixed. If the bug is Fixed, then they will click the *Close* button to go ahead and close the Feature or Bug.
+    - If the issue has not been fixed, then the *Re-Open* button is clicked to re-open the issue and bounce it back to the Development; this is repeated until the bug is *Closed*.
+    - The Bug Tracker project has been implemented in such a way, that you can only close an issue if the *Status* of the issue is in the *Resolved* status; this prevents bugs being missed and closed off accidently.
+
+**Bug Database Search:**
+- The Bug Tracker has functionality in place which allows users to search for issues specific to them, making it easier for Users to focus their attention to the correct area, hence,
 improving efficiency and saving precious time.
 
 **Project Management:**
@@ -35,6 +55,9 @@ improving efficiency and saving precious time.
 
 **Pagination**:
 - Pagination is used to organise issues in a more user friendly way. All issues are broken down in 10s, with the most recently updated issues shown first.
+
+**Analytics**:
+- As soon as a user logs in, they are treated to a *Pie Chart* which shows number of issues raised for each project in the Bug Database. This gives the user a high level glimpse into the state of the Bug Database.
 
 ## UX
 
@@ -65,6 +88,20 @@ List of tools and technologies used in this project are as follows:
     - The project uses **Font Awesome** to provide icons for the Footer social network links. 
 - [Balsamiq](https://balsamiq.com/)
     - This tool was used to create the mockups of the website at the beginning of the project. 
+
+## Django Apps - Brief Description
+
+This section gives a brief description as to the role of each app in the overall project.
+
+### BugDB
+
+### Project Manager
+
+### Accounts
+
+### makePayment
+
+### Search
 
 ## Testing
 

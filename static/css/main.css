@@ -17,13 +17,17 @@
     margin-top: 10px;
 }
 
+#create-btn{
+    margin-top: 20px;
+}
+
 /* Search results page */
 
 #go-home-btn{
     margin-top: 25px;
 }
 
-/* Issue Type Icons */
+/* Create Issue page & Edit Issue page */
 
 .red-icon{
     color: red;
@@ -35,14 +39,6 @@
     font-size: 18px;
 }
 
-/* Detailed Issue View Page */
-
-.issue-title-detailed{
-    word-break: break-all;
-}
-
-/* Add New Issue Page & Edit Issue Page */
-
 .helper-message{
     color: red;
     font-style: italic;
@@ -53,20 +49,31 @@
     display: none;
 }
 
-/* Pagination hide */
+/* Detailed Issue View Page */
+
+.issue-title-detailed{
+    word-break: break-all;
+}
+
+.issue-btn{
+    margin: 5px;
+}
+
+
+/* All Issues page & Search results page */
 
 .pag-hide{
     display: none;
 }
 
-/* View Projects page */
+/* Manage Projects page */
 
 .proj-collapsible{
     margin-top: 40px !important;
     margin-bottom: 25px !important;
 }
 
-/* Forms message display stylings */
+/* Generic - Forms message display stylings */
 
 .msg {
     width:100%;
@@ -90,12 +97,6 @@
 
 .help-block{
     font-style: italic;
-}
-
-/* Issue Detailed view - buttons */
-
-.issue-btn{
-    margin: 5px;
 }
 
 /* Make Payment page */
@@ -170,7 +171,7 @@ footer{
 /* Media Queries */
 
 @media screen and (max-width: 986px){
-    /* Stylings for Screens smaller than 1000px */
+    /* Stylings for Screens smaller than 986px */
 
     .footer-custom-align{
         text-align: center !important;

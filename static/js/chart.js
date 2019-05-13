@@ -1,4 +1,5 @@
 $(function(){
+    // grab the canvas element
     let myChart = document.getElementById("myChart").getContext("2d");
 
     // Global options
@@ -42,7 +43,7 @@ $(function(){
         options: {
             title:{
                 display: true,
-                text: "Issues / Project",
+                text: "Issues Reported By Project",
                 fontSize: 22
             }
         }

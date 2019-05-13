@@ -4,7 +4,7 @@
 var numberOfItems = $(".bug-item").length;
 
 // limit for number of bugs visible per pagination page
-var numberLimit = 10;
+var numberLimit = 5;
 
 paginate();
 
@@ -13,7 +13,7 @@ function paginate(){
     if(numberOfItems > numberLimit){
         // number of bugs is higher than limit, so perform pagination
 
-        // begin by bringing into view 10 bugs and hiding the rest using the jquery 'gt()' method
+        // begin by bringing into view 5 bugs and hiding the rest using the jquery 'gt()' method
         $(`.bug-item:gt(${numberLimit - 1})`).hide();
         
         // calculate number of pagination links needed
@@ -87,18 +87,18 @@ $("#pag-right").on("click", function(){
 });
 
 function hideShowBugs(currentPagNum){
-    // start off by hiding all recipes from view
+    // start off by hiding all issues from view
     $(`.bug-item`).hide();
     
     // calculate number of bugs viewed so far so if current pagination number is 2
-    // and limit per page is 5 then total number of possible recipes viewed so far is 10 etc.
+    // and limit per page is 5 then total number of possible issues viewed so far is 10 etc.
     var bugsViewedSoFar = currentPagNum * numberLimit;
 
     // calculate the index number of first bug to be shown on current pagination page, a take-away 
-    // operation is carried out using the page limit and the 'bugsViewedSoFar' variable to ensure correct set of recipes is shown
-    var startingRecipeNum = bugsViewedSoFar - numberLimit;
+    // operation is carried out using the page limit and the 'bugsViewedSoFar' variable to ensure correct set of issues is shown
+    var startingBugNum = bugsViewedSoFar - numberLimit;
 
-    for(var i=startingRecipeNum; i<bugsViewedSoFar; i++){
+    for(var i=startingBugNum; i<bugsViewedSoFar; i++){
         // show relevant bugs using the 'eq()' jquery method
         $(`.bug-item:eq(${i})`).show();
     }

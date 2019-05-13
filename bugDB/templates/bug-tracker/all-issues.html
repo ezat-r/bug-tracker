@@ -36,6 +36,13 @@
         {% endfor %}
 </tbody>
 </table>
+<!-- Begin Add Issue Button -->
+<div class="row center-align" id="create-btn">
+    <a href="{% url 'create_issue' %}" class="waves-effect waves-light btn green">Create New
+        <i class="material-icons right">playlist_add</i>
+    </a>
+</div>
+<!-- End Add Issue Button -->
 <!-- Begin Pagination -->
 <div class="row" id="pag-container">
     <ul class="pagination">
