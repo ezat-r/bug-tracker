@@ -77,13 +77,13 @@ List of tools and technologies used in this project are as follows:
 - [JQuery](https://jquery.com)
     - The project uses **JQuery** to aid with the Materialize CSS navigation and various other components across the project use it to function correctly. 
 - [Python](https://www.python.org/)
-    - The **Python** programming language was used to code the backend of the Recipe Management project.
+    - The **Python** programming language was used to code the backend of the Issue Management project.
 - [Django](https://www.djangoproject.com/)
     - The project uses **Django** which is a Python Web Framework used as the backend of the project and fulfilling functions such as; connecting to the SQL database, controlling routing and navigation across pages etc.
 - [Stripe API](https://stripe.com/docs/api)
     - The project uses **Stripe** to take payments during the *Up Voting* process for *Feature Request* type issues.
 - [Heroku](https://www.heroku.com/)
-    - The project uses **Heroku** as the Hosting platform for this project; this was because GitHubPages only provides hosting for static projects, and not dynamic projects like this Recipe Manager project.
+    - The project uses **Heroku** as the Hosting platform for this project; this was because GitHubPages only provides hosting for static projects, and not dynamic projects like this Issue Manager project.
 - [Font Awesome](https://fontawesome.com/)
     - The project uses **Font Awesome** to provide icons for the Footer social network links. 
 - [Balsamiq](https://balsamiq.com/)
@@ -103,11 +103,15 @@ The *projectManager* app was responsible for the adding, updating and deleting o
 
 ### Accounts
 
-The *Accounts* app was responsible for handling of logging in & out as well as the creation of new Users via the Registration menu.
+The *Accounts* app was responsible for handling of logging in & out as well as the creation of new Users via the Registration menu. 
+
+*Note:* The code for this app was re-used from an earlier section of the Section 9 Django module.
 
 ### makePayment
 
 The *makePayment* app was responsible for taking payments for the *Up Voting* of Feature Requests; the Stripe API was used to handle the payment taking & verification.
+
+*Note:* The code for this app was re-used from an earlier section of the Section 9 Django module.
 
 ### Search
 
@@ -122,7 +126,7 @@ Testing scenarios run:
 
 1. Navigation:
     1. Click on all main navigation buttons i.e. 'Home', 'Create New', 'Analytics' etc. Verify that each button takes you to the correct page.
-    2. Click onto the 'Bug Tracker' brand name in the top-left of each page and verify that it takes you to the 'Recipes' page.
+    2. Click onto the 'Bug Tracker' brand name in the top-left of each page and verify that it takes you to the 'Issues' page.
 
 2. Forms testing:
     1. Go to the "Create New Issue" page.
@@ -132,7 +136,7 @@ Testing scenarios run:
     5. Repeat steps 1-4 for the 'Edit Issue' and other forms and make sure everything is working as expected.
 
 3. Create New Issue:
-    1. Go to the "Create New Recipe" page.
+    1. Go to the "Create New Issue" page.
     2. Fill out the form.
     3. Click the *CREATE* button.
     4. Verify that you are re-directed to the "All Issues" page and the new Issue can be viewed.
@@ -170,7 +174,7 @@ Testing scenarios run:
 8. Typography:
 	1. Go to the "All Issues" page.
 	2. Have a look at the text and observe if all text is clearly visible i.e. is it too small, too big.
-    3. Click the 'View' button to access a detailed Recipe view and verify that the text looks readable, is not hard to read etc.
+    3. Click the 'View' button to access a detailed Issue view and verify that the text looks readable, is not hard to read etc.
 	4. Follow step 2-3 again, however, this time do the same for different screen sizes i.e. Phone, Tablet, Desktop etc.
 	5. Follow steps 2 - 4 for all pages. Is the the typography consistent across all pages? Is it readable on small screen devices?
 
@@ -261,7 +265,15 @@ Multi browser testing was carried out to ensure there is consistency across diff
 - Microsoft Edge
 - Internet Explorer v11
 
-## Remote Deployment
+### Known Bugs
+
+**Analytics Pie Chart**:
+- The *Analytics* shows a Pie chart which is made up of how many issues are raised for each project. However, whilst it looks nice, it's not responsive. This means that on small screen devices the pie chart will not be shown correctly.
+    - This turned out to be a known bug with the *Chart.js* library, which meant that unfortunately, there was very little that I could do.
+
+## Deployment
+
+### Remote Deployment
 
 The website was deployed using Heroku. Deployment process which was followed is given below:
 
@@ -281,7 +293,7 @@ The website was deployed using Heroku. Deployment process which was followed is 
 14. Access your heroku app link to see deployment.
 15. Your app is now deployed onto Heroku.
 
-## Running Locally
+### Running Locally
 
 In the event you would like to run the project locally follow the below steps:
 
@@ -289,3 +301,4 @@ In the event you would like to run the project locally follow the below steps:
 2. Run the following command: **pip3 install -r requirements.txt** -> this will go ahead and install all dependencies needed to run the project.
 3. Once all requirements are install, run the following command: **python app.py**.
 4. This will launch the Django project and output a url on the terminal window. Copy and paste this in a browser and this will load the project.
+
