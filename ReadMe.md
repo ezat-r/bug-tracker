@@ -95,13 +95,23 @@ This section gives a brief description as to the role of each app in the overall
 
 ### BugDB
 
+The *BugDB* app is responsible for handling the adding, updating, and management of bugs.
+
 ### Project Manager
+
+The *projectManager* app was responsible for the adding, updating and deleting of projects. These projects are used by the *bugDB* app during the bug creation process, as well as, for the *Analytics* pie chart. 
 
 ### Accounts
 
+The *Accounts* app was responsible for handling of logging in & out as well as the creation of new Users via the Registration menu.
+
 ### makePayment
 
+The *makePayment* app was responsible for taking payments for the *Up Voting* of Feature Requests; the Stripe API was used to handle the payment taking & verification.
+
 ### Search
+
+The *search* was used to query the *Issues* database and return a list of results which matched a user query.
 
 ## Testing
 
