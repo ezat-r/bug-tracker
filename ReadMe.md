@@ -300,10 +300,8 @@ In the event you would like to run the project locally follow the below steps:
 1. Via the terminal window or PowerShell (on Windows), cd into the root of the directory the project.
 2. Run the following command: **pip3 install -r requirements.txt** -> this will go ahead and install all dependencies needed to run the project.
 3. Then, create your environment variables and store them in a *env.py* file.
-4. This will launch the Django project and output a url on the terminal window. Copy and paste this in a browser and this will load the project.
-5. To register a new *Normal* level user, use the Web UI registration form.
-6. To create a new *SuperUser*, then run the following command in the terminal window: **python manage.py createsuperuser**, then enter a *Username* & *Password* for your user.
-7. Run the following command to make sure that a local database is created: **python manage.py migrate** -> this will go ahead and create a new SQLite 3 db locally.
-7. Then, once happy, run the following command: **python manage.py runserver** to run the project -> it will output a url, copy and paste this url into a browser.
-8. The project has now been successfully loaded.
+4. To create a new *SuperUser*, then run the following command in the terminal window: **python manage.py createsuperuser**, then enter a *Username* & *Password* for your user.
+5. Run the following command to make sure that a local database is created: **python manage.py migrate** -> this will go ahead and create a new SQLite 3 db locally.
+6. Then, once happy, run the following command: **python manage.py runserver** to run the project -> it will output a url, copy and paste this url into a browser.
+7. The project has now been successfully loaded.
 
