@@ -1,5 +1,5 @@
 
-/* All Issues page */
+/************ All Issues page */
 
 .btn-small{
     height: 24px;
@@ -21,13 +21,13 @@
     margin-top: 20px;
 }
 
-/* Search results page */
+/************ Search results page */
 
 #go-home-btn{
     margin-top: 25px;
 }
 
-/* Create Issue page & Edit Issue page */
+/************ Create Issue page & Edit Issue page */
 
 .red-icon{
     color: red;
@@ -49,7 +49,11 @@
     display: none;
 }
 
-/* Detailed Issue View Page */
+#home_btn{
+    margin-top: 20px;
+}
+
+/************ Detailed Issue View Page */
 
 .issue-title-detailed{
     word-break: break-all;
@@ -60,20 +64,20 @@
 }
 
 
-/* All Issues page & Search results page */
+/************ All Issues page & Search results page */
 
 .pag-hide{
     display: none;
 }
 
-/* Manage Projects page */
+/************ Manage Projects page */
 
 .proj-collapsible{
     margin-top: 40px !important;
     margin-bottom: 25px !important;
 }
 
-/* Generic - Forms message display stylings */
+/************ Generic - Forms message display stylings */
 
 .msg {
     width:100%;
@@ -99,7 +103,12 @@
     font-style: italic;
 }
 
-/* Make Payment page */
+/* The strong tag is not correctly supported on other major browsers except for Chrome */
+strong{
+    font-weight: bold;
+}
+
+/************ Make Payment page */
 
 #make-payment-header{
     margin-top: 20px !important;
@@ -111,7 +120,7 @@
     margin-bottom: 20px !important; 
 }
 
-/* Footer */
+/************ Footer */
 
 footer{
     background-color: #4CAF50;
@@ -168,7 +177,7 @@ footer{
     color: grey;
   }
 
-/* Media Queries */
+/************ Media Queries */
 
 @media screen and (max-width: 986px){
     /* Stylings for Screens smaller than 986px */

@@ -78,10 +78,14 @@
         <!-- End Issue Description Element -->
         <!-- Begin Create Issue Button -->
         <div class="center-align">
-            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit">Update
-            </button>
+            <button class="waves-effect waves-light btn blue" id="add_btn" type="submit"><i class="fa fa-repeat"></i> Update</button>
         </div>
         <!-- End Create Issue Button -->
+        <!-- Begin Home Button -->
+        <div class="center-align">
+            <a class="btn orange" id="home_btn" href="{% url 'all_issues' %}"><i class="fa fa-home"></i> Home</a>
+        </div>
+        <!-- End Home Button -->
     </form>
     <!-- End Form -->
 </div>

@@ -16,10 +16,20 @@
     <li class="chart-proj-item" data-project="{{issue.issueProjectName}}" data-count="{{issue.count}}"></li>
     {% endfor %}
 </ul>
+<!-- Begin Home Button -->
+<div class="center-align">
+    <a class="btn orange" id="home_btn" href="{% url 'all_issues' %}"><i class="fa fa-home"></i> Home</a>
+</div>
+<!-- End Home Button -->
 {% else %}
 <div class="row center-align">
     <h5>Awaiting Analytics...</h5>
     <p>Check this page later!</p>
+    <!-- Begin Home Button -->
+    <div class="center-align">
+        <a class="btn orange" id="home_btn" href="{% url 'all_issues' %}"><i class="fa fa-home"></i> Home</a>
+    </div>
+    <!-- End Home Button -->
 </div>
 {% endif %}
 

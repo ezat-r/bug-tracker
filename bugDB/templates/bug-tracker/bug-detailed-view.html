@@ -31,7 +31,7 @@
         <p>
             {% if issue.status == "Resolved" %}
             <a data-target="modal3" class="btn orange issue-btn modal-trigger"><i class="fa fa-share"></i> Re-open</a>
-            <a data-target="modal2" class="btn red issue-btn modal-trigger"><i class="fa fa-times-circle"></i> Close</a></p>
+            <a data-target="modal2" class="btn red issue-btn modal-trigger"><i class="fa fa-times-circle"></i> Close</a>
             {% elif issue.status == "Closed" %}
             <a data-target="modal3" class="btn orange issue-btn modal-trigger"><i class="fa fa-share"></i> Re-open</a>
             {% else %}
@@ -51,6 +51,8 @@
             <!-- Only show the 'Edit' button if the logged in user is the reporter of the current issue -->
             <a href="{% url 'all_issues' %}edit-issue/{{issue.id}}/" class="btn purple issue-btn"><i class="fa fa-pencil"></i> Edit</a>
             {% endif %}
+        </p>
+        <p><a class="btn orange" href="{% url 'all_issues' %}"><i class="fa fa-home"></i> Home</a></p>
     </div>
 </div>
 <!-- End Bug Information -->

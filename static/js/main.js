@@ -35,6 +35,15 @@ $(function(){
 
         }
 
+        if(document.title == "Create New Issue"){
+            // select element event handler - enable 'Add Recipe' button only if a category is selected
+            $("#issueProjectName").on("change", function(){
+                if($("#issueProjectName").val() != null){
+                    $("#add_btn").removeAttr("disabled");
+                }
+            })
+        }
+
     }else if(document.title == "Bug Tracker - Sign In"){
         $("#id_username").addClass("validate");
         $("#id_password").addClass("validate");
